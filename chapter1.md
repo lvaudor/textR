@@ -1,6 +1,6 @@
 ---
 title: Scraper des donnees du web
-description: Ce chapitre vous montre comment scraper des donnees textuelles de sites web à l aide des fonctions du package rvest.
+description: blah
 ---
 
 ## Lire une page web

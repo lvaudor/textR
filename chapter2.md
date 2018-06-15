@@ -1,6 +1,6 @@
 ---
 title: Manipuler des chaines de caractere
-description: Ce chapitre vous montre comment scraper des données textuelles de sites web à l'aide des fonctions du package rvest.
+description: blah
 ---
 
 ## An exercise title written in sentence case
