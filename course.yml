@@ -1,5 +1,6 @@
 title: textR
-description: title: Travailler avec des textes: de la donnee brute à la visualisation
-description: fqsdf
+instructors: 
+ - lise.vaudor@ens-lyon.fr
+description: 'Travailler avec des textes'
 programming_language: r
 from: 'r-base-prod:v1.0.0'
