@@ -32,6 +32,7 @@ The instructions that follow should be in bullet point form with clear guidance 
 
 ```{r}
 library(ggplot2)
+a=33
 ```
 
 `@sample_code`
