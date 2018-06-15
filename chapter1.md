@@ -1,6 +1,6 @@
 ---
-title: Scraper des données du web
-description: Ce chapitre vous montre comment scraper des données textuelles de sites web à l'aide des fonctions du package rvest.
+title: Scraper des donnees du web
+description: Ce chapitre vous montre comment scraper des donnees textuelles de sites web à l'aide des fonctions du package rvest.
 ---
 
 ## An exercise title written in sentence case
