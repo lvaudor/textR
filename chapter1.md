@@ -1,6 +1,6 @@
 ---
-title: Template Chapter 1
-description: This is a template chapter.
+title: Scraper des données du web
+description: Ce chapitre vous montre comment scraper des données textuelles de sites web à l'aide des fonctions du package rvest.
 ---
 
 ## An exercise title written in sentence case
@@ -31,13 +31,12 @@ The instructions that follow should be in bullet point form with clear guidance 
 `@pre_exercise_code`
 
 ```{r}
-# Load datasets and packages here.
 ```
 
 `@sample_code`
 
 ```{r}
-# Your
+url="http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
 # sample
 # code
 # should
