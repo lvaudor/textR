@@ -32,7 +32,6 @@ The instructions that follow should be in bullet point form with clear guidance 
 `@pre_exercise_code`
 
 ```{r}
-library(ggplot2)
 a=33
 ```
 
