@@ -1,5 +1,5 @@
 ---
-title: Manipuler des chaines de caractère
+title: Manipuler des chaines de caractere
 description: Ce chapitre vous montre comment scraper des données textuelles de sites web à l'aide des fonctions du package rvest.
 ---
 
