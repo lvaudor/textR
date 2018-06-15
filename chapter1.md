@@ -31,34 +31,25 @@ The instructions that follow should be in bullet point form with clear guidance 
 `@pre_exercise_code`
 
 ```{r}
+#library(ggplot2)
 ```
 
 `@sample_code`
 
 ```{r}
-# url="http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
-# sample
-# code
-# should
-# be
-# ideally
-# 10 lines or less,
-# with a max
-# of 16 lines.
+url="http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
 ```
 
 `@solution`
 
 ```{r}
-# Answer goes here
-# Make sure to match the comments with your sample code
-# to help students see the differences from solution
-# to given.
+url="http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
 ```
 
 `@sct`
 
 ```{r}
-# Update this to something more informative.
+test_error
+test_object("url")
 success_msg("Some praise! Then reinforce a learning objective from the exercise.")
 ```
