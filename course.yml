@@ -1,4 +1,5 @@
 title: textR
 instructors: lise.vaudor@ens-lyon.fr
 description: 'Travailler avec des textes\: de la donnée brute à la visualisation. Ce cours détaille les étapes nécessaires pour faire une petite analyse textuelle de contenus récupérés sur le web. Il comprend ainsi des chapitres sur la récupération des textes, leur nettoyage, leur mise en forme, et la production propre à ce type de données de quelques statistiques basiques et graphiques. L''exemple (qui servira de fil conducteur) est celui des contenus textuels du site Marmiton. Un conseil\: ne vous lancez pas dans ces exercices le ventre vide!'
+programming_language: r
 from: "r-base-prod:v1.0.0"
