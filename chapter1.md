@@ -1,5 +1,5 @@
 ---
-title: Nettoyer donnees du web
+title: Scraper des données du web
 description: Ce chapitre vous montre comment scraper des données textuelles de sites web à l'aide des fonctions du package rvest.
 ---
 

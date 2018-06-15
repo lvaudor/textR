@@ -1,5 +1,5 @@
 ---
-title: Scraper des donnees du web
+title: Manipuler des chaines de caractère
 description: Ce chapitre vous montre comment scraper des données textuelles de sites web à l'aide des fonctions du package rvest.
 ---
 
@@ -53,3 +53,5 @@ test_error
 test_object("url")
 success_msg("Some praise! Then reinforce a learning objective from the exercise.")
 ```
+
+
