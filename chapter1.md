@@ -3,7 +3,7 @@ title: Scraper des donnees du web
 description: Ce chapitre vous montre comment scraper des donnees textuelles de sites web à l'aide des fonctions du package rvest.
 ---
 
-## An exercise title written in sentence case
+## Lire une page web
 
 ```yaml
 type: NormalExercise
@@ -31,7 +31,7 @@ The instructions that follow should be in bullet point form with clear guidance 
 `@pre_exercise_code`
 
 ```{r}
-#library(ggplot2)
+library(ggplot2)
 ```
 
 `@sample_code`
