@@ -1,10 +1,10 @@
 ---
 title: Scraper des donnees du web
 title_meta: Chapter 1
-description: blah
+description: Ce chapitre vous montre comment scraper des donnees textuelles de sites web a l aide des fonctions du package rvest.
 ---
 
-## Lire
+## Lire un fichier html depuis R
 
 ```yaml
 type: NormalExercise
