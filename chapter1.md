@@ -36,7 +36,7 @@ The instructions that follow should be in bullet point form with clear guidance 
 `@sample_code`
 
 ```{r}
-url="http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
+# url="http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
 # sample
 # code
 # should
