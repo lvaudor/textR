@@ -1,5 +1,5 @@
 ---
-title: Scraper des données du web
+title: Nettoyer données du web
 description: Ce chapitre vous montre comment scraper des données textuelles de sites web à l'aide des fonctions du package rvest.
 ---
 
@@ -10,7 +10,7 @@ type: NormalExercise
 lang: r
 xp: 100
 skills: 1
-key: d1facd47cd
+key: d2c087ae11
 ```
 
 This is the assignment text. It should help provide students with the background information needed.
