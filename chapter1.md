@@ -1,6 +1,7 @@
 ---
 title: Scraper des donnees du web
 description: blah
+
 ---
 
 ## Lire une page web
@@ -53,4 +54,30 @@ url="http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-
 test_error
 test_object("url")
 success_msg("Some praise! Then reinforce a learning objective from the exercise.")
+```
+
+---
+## <<<New Exercise>>>
+
+```yaml
+type: MultipleChoiceExercise
+key: 7bfdcc2498
+lang: r
+xp: 50
+skills: 1
+```
+
+
+`@instructions`
+
+`@hint`
+
+`@pre_exercise_code`
+```{r}
+
+```
+
+`@sct`
+```{r}
+
 ```
