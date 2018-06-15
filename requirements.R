@@ -6,6 +6,8 @@ install_version("ggplot2", "2.2.1")
 install_version("dplyr", "0.7.5")
 install_version("tidyr", "0.8.1")
 install_version("purrr", "0.2.4")
+install_version("tidytext","0.1.9")
+install_version("widyr","0.1.1")
 
 ##### Install packages in development from GitHub #####
 
