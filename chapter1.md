@@ -1,10 +1,9 @@
 ---
-title: 'Scraper des donnees du web'
+title: Scraper des donnees du web
 description: blah
-
 ---
 
-## 'Lire une page web'
+## Lire
 
 ```yaml
 type: NormalExercise
