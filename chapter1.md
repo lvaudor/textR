@@ -57,7 +57,7 @@ library(rvest)
 url<-"http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
 
 # lire la page dans R
-html<-html_read(url)
+html<-read_html(url)
 
 # sélectionner l'élément correspondant au titre de la recette
 element_titre<- html %>% html_nodes(".main-title")
@@ -132,3 +132,59 @@ test_object("quantites")
 test_object("ingredients")
 success_msg("Bien joué! Prenons maintenant notre nom de recette, nos ingrédients, et leurs quantités, et versons tout ça dans un moule rectangulaire")
 ```
+
+---
+## Retour au format rectangulaire, et mise en fonction!
+
+```yaml
+type: PureMultipleChoiceExercise
+key: 81e8e12acf
+xp: 50
+skills: 1
+```
+
+Examinez le code suivant:
+
+```{r}
+library(rvest)
+library(dplyr)
+
+recup_ingredients=function(url){
+    html<-read_html(url)
+    # Recupere titre
+    titre <- html %>%
+      html_nodes(".main-title") %>% 
+      html_text()
+    # Recupere quantites
+    quantites=html %>%
+      html_nodes(".recipe-ingredient-qt")  %>%
+      html_text()
+    # Recupere ingredients
+    ingredients=html %>%
+      html_nodes(".ingredient") %>% 
+      html_text()
+    # Rassemble le tout dans une tibble 
+    tib<-bind_cols(url=rep(url,length(ingredients)),
+                   titre=rep(titre, length(ingredients)),
+                   quantites=quantites,
+                   ingredients=ingredients)
+    return(tib)
+}
+```
+
+Que fait la fonction `recup_ingredients()`?
+
+
+`@possible_answers`
+- Elle prend en entrée l'**url** d'une recette Marmiton et renvoie en sortie une **liste** de la liste des ingrédients et de la liste des quantités.
+- Elle prend en entrée l'**url** d'une recette Marmiton et renvoie en sortie une **table** renseignant les ingrédients et leurs quantités.
+- Elle prend en entrée l'**url** d'une recette Marmiton et renvoie en sortie les **éléments html** ("nodes") relatifs aux ingrédients.
+- Elle prend en entrée le **nom** d'une recette Marmiton et renvoie en sortie une **table** renseignant les ingrédients et leurs quantités
+
+`@hint`
+
+`@feedback`
+- Non, l'objet en sortie (tib) n'est pas une liste, mais une table (tibble)
+- Oui!! c'est bien ça...
+- Non, nous sommes allés plus loin que la simple extraction des éléments html...
+- Non, telle que cette fonction est écrite, on ne peut pas fournir en entrée le nom de la recette...
