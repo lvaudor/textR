@@ -9,7 +9,7 @@ description: Ce chapitre vous montre comment scraper des données textuelles de 
 ```yaml
 type: NormalExercise
 lang: r
-xp: 100
+xp: 50
 skills: 1
 key: d2c087ae11
 ```
@@ -86,18 +86,21 @@ success_msg("Bravo! A défaut de pouvoir lécher la casserole, vous pouvez scrap
 type: NormalExercise
 key: 02108d11c5
 lang: r
-xp: 100
+xp: 50
 skills: 1
 ```
 
-On repart de l'objet `html` de l'exercice précédent (même recette de bavarois, donc...). On va maintenant essayer de récupérer la liste des **ingrédients** (pour l'instant accompagnés de leurs unités de mesure: "g de biscuits à la cuillère", "g de beurre rammoli", etc.), et les **quantités** correspondantes (150, 170, etc.).
-
-Vous pouvez essayer d'utiliser le **selectorGadget** ou **examiner le code source de la page** sur votre navigateur web pour déterminer quelle est la **classe des éléments** qui nous intéressent...
+On repart de l'objet `html` de l'exercice précédent (même recette de bavarois, donc...). 
 
 `@instructions`
-Les noms des ingrédients sont renseignés par les éléments de classe "ingredient", tandis que les quantités sont renseignées dans les éléments de classe "recipe-ingredient-qt" 
+
+Récupérer le nom des **ingrédients** (pour l'instant accompagnés de leurs unités de mesure: "g de biscuits à la cuillère", "g de beurre rammoli", etc.), et les **quantités** correspondantes (150, 170, etc.).
+
+Vous pouvez essayer d'utiliser le **selectorGadget** ou **examiner le code source de la page** sur votre navigateur web pour déterminer quelle est la **classe des éléments** qui nous intéressent ici...
 
 `@hint`
+Les noms des ingrédients sont renseignés par les éléments de classe "ingredient", tandis que les quantités sont renseignées dans les éléments de classe "recipe-ingredient-qt" 
+
 
 `@pre_exercise_code`
 ```{r}
@@ -139,7 +142,7 @@ success_msg("Bien joué! Prenons maintenant notre nom de recette, nos ingrédien
 ```yaml
 type: PureMultipleChoiceExercise
 key: 81e8e12acf
-xp: 50
+xp: 25
 skills: 1
 ```
 
@@ -152,15 +155,15 @@ library(dplyr)
 recup_ingredients=function(url){
     html<-read_html(url)
     # Recupere titre
-    titre <- html %>%
+    titre<-html %>%
       html_nodes(".main-title") %>% 
       html_text()
     # Recupere quantites
-    quantites=html %>%
+    quantites<-html %>%
       html_nodes(".recipe-ingredient-qt")  %>%
       html_text()
     # Recupere ingredients
-    ingredients=html %>%
+    ingredients<-html %>%
       html_nodes(".ingredient") %>% 
       html_text()
     # Rassemble le tout dans une tibble 
@@ -188,3 +191,89 @@ Que fait la fonction `recup_ingredients()`?
 - Oui!! c'est bien ça...
 - Non, nous sommes allés plus loin que la simple extraction des éléments html...
 - Non, telle que cette fonction est écrite, on ne peut pas fournir en entrée le nom de la recette...
+
+`@sct`
+```{r}
+test_mc(correct = 2)
+```
+
+
+---
+## Iteration sur plusieurs pages
+
+
+```yaml
+type: NormalExercise
+key: 3d5388c816
+lang: r
+xp: 100
+skills: 1
+```
+
+Deux objets se trouvent déjà dans l'environnement: 
+
+- `urls` (un vecteur de 5 urls pointant vers 5 recettes de dessert Marmiton)
+- `recup_ingredients()`, la fonction définie précédemment 
+
+`@instructions`
+
+Appliquez itérativement la fonction `recup_ingredients()` à `urls`, à l'aide de la fonction `map()` du package `purrr`.
+
+`@hint`
+
+`@pre_exercise_code`
+```{r}
+urls=c("http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx",
+       "http://www.marmiton.org/recettes/recette_milk-shake-pomme-banane-et-kiwi_312444.aspx",
+       "http://www.marmiton.org/recettes/recette_salade-de-fruits-hivernale_86644.aspx",
+       "http://www.marmiton.org/recettes/recette_muffins-moelleux-aux-chocolat-au-coeur-chocolat-blanc-banane-de-sandrine_65377.aspx",
+       "http://www.marmiton.org/recettes/recette_marbre-3-couleurs_222805.aspx")
+recup_ingredients=function(url){
+    html<-read_html(url)
+    # Recupere titre
+    titre<-html %>%
+      html_nodes(".main-title") %>% 
+      html_text()
+    # Recupere quantites
+    quantites<-html %>%
+      html_nodes(".recipe-ingredient-qt")  %>%
+      html_text()
+    # Recupere ingredients
+    ingredients<-html %>%
+      html_nodes(".ingredient") %>% 
+      html_text()
+    # Rassemble le tout dans une tibble 
+    tib<-bind_cols(url=rep(url,length(ingredients)),
+                   titre=rep(titre, length(ingredients)),
+                   quantites=quantites,
+                   ingredients=ingredients)
+    return(tib)
+}
+```
+
+`@sample_code`
+```{r}
+library(purrr)
+
+# Applique itérativement recup_ingredients à chaque élément de urls
+tibs=map(.x=___,.f=___)
+
+# Recolle toutes les tables en une seule (possible car même nombre de colonnes)
+tib_ingredients=bind_rows(tibs)
+```
+
+`@solution`
+```{r}
+library(purrr)
+
+# Applique itérativement recup_ingredients à chaque élément de urls
+tibs=map(.x=___,.f=___)
+
+# Recolle toutes les tables en une seule (possible car même nombre de colonnes)
+tib_ingredients=bind_rows(tibs)
+```
+
+`@sct`
+```{r}
+test_error
+```
