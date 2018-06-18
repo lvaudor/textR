@@ -8,8 +8,12 @@ install_version("tidyr", "0.8.1")
 install_version("purrr", "0.2.4")
 install_version("tidytext","0.1.9")
 install_version("widyr","0.1.1")
+#install_version("xml2","")
+install_version("openssl","1.0.1")
+#install_version("selectr","0.4-1")
+install_version("rvest","0.1.1")
 #### Install packages in development from GitHub #####
-install_github("hadley/rvest")
+
 # install_github("nicholasehamilton/ggtern")
 
 ##### Install packages from Bioconductor
