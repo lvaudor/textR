@@ -54,6 +54,7 @@ titre <- element_titre %>% ___()
 `@solution`
 
 ```{r}
+library(dplyr)
 library(rvest)
 url<-"http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
 
