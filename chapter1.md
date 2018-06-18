@@ -14,37 +14,58 @@ skills: 1
 key: d2c087ae11
 ```
 
-This is the assignment text. It should help provide students with the background information needed.
-The instructions that follow should be in bullet point form with clear guidance for what is expected.
+Observez la **page web** qui décrit la recette du bavarois au chocolat blanc et aux framboises (son url se termine par .aspx mais le contenu est bien de l'html!!), 
+
+Nous souhaitons récupérer le **nom de la recette** à partir du contenu html de la page.
+
+Nous allons pour ce faire utiliser des fonctions du package `readr`.
 
 `@instructions`
-- Instruction 1
-- Instruction 2
-- Instruction 3
-- Instruction 4
-
+- **lire la page** dans R
+- **sélectionner l'élément** correspondant au titre de la recette
+- **extraire le contenu** de cet élément
+ 
 `@hint`
-- Here is the hint for this setup problem. 
-- It should get students 50% of the way to the correct answer.
-- So don't provide the answer, but don't just reiterate the instructions.
-- Typically one hint per instruction is a sensible amount.
+- l'élément correspondant au titre de la recette est de classe "main-title"
+- pour sélectionner un élément de *classe* "pouetpouet", on écrit ".pouetpouet"
 
 `@pre_exercise_code`
 
 ```{r}
-a=33
 ```
 
 `@sample_code`
 
 ```{r}
-url="http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
+library(rvest)
+url<-"http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
+
+# lire la page dans R
+myhtml<-___(url)
+
+# sélectionner l'élément correspondant au titre de la recette
+element_titre<- myhtml %>% html_nodes(___)
+
+# extraire le contenu de cet élément
+titre <- element_titre %>% ___()
 ```
 
 `@solution`
 
 ```{r}
-url="http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
+library(rvest)
+url<-"http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
+
+# lire la page dans R
+myhtml<-html_read(url)
+
+# sélectionner l'élément correspondant au titre de la recette
+element_titre<- myhtml %>% html_nodes(".main-title")
+
+# extraire le contenu de cet élément
+titre <- element_titre %>% html_text()
+
+
 ```
 
 `@sct`
@@ -52,5 +73,8 @@ url="http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-
 ```{r}
 test_error
 test_object("url")
+test_object("myhtml")
+test_object("element_titre")
+test_object("titre")
 success_msg("Some praise! Then reinforce a learning objective from the exercise.")
 ```
