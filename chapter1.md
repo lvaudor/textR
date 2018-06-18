@@ -39,7 +39,7 @@ a=32
 ```{r}
 test_error
 ```
-
+---
 ## Extraire un élément textuel d'une page web depuis R
 
 ```yaml
