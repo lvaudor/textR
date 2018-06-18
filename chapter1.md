@@ -3,9 +3,6 @@ title: Scraper des données du web
 title_meta: Chapter 1
 description: Ce chapitre vous montre comment scraper des données textuelles de sites web a l' aide des fonctions du package rvest.
 ---
-
-
----
 ## Un exo pour comprendre les exos Datacamp
 
 ```yaml
