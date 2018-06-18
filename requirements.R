@@ -8,6 +8,7 @@ install_version("tidyr", "0.8.1")
 install_version("purrr", "0.2.4")
 install_version("tidytext","0.1.9")
 install_version("widyr","0.1.1")
+install_version("rvest","0.3.2")
 
 ##### Install packages in development from GitHub #####
 
