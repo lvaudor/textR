@@ -22,8 +22,6 @@ Pour tester
 
 `@pre_exercise_code`
 ```{r}
-library(openssl)
-library(xml2)
 ```
 
 `@sample_code`
