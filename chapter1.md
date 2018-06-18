@@ -4,6 +4,45 @@ title_meta: Chapter 1
 description: Ce chapitre vous montre comment scraper des données textuelles de sites web a l' aide des fonctions du package rvest.
 ---
 
+
+---
+## Un exo pour comprendre les exos Datacamp
+
+```yaml
+type: NormalExercise
+key: cad10d2f39
+lang: r
+xp: 100
+skills: 1
+```
+
+
+`@instructions`
+
+Pour tester
+
+`@hint`
+
+`@pre_exercise_code`
+```{r}
+
+```
+
+`@sample_code`
+```{r}
+a=33
+```
+
+`@solution`
+```{r}
+a=32
+```
+
+`@sct`
+```{r}
+test_error
+```
+
 ## Extraire un élément textuel d'une page web depuis R
 
 ```yaml
@@ -78,7 +117,6 @@ test_object("element_titre")
 test_object("titre")
 success_msg("Bravo! A défaut de pouvoir lécher la casserole, vous pouvez scraper la recette!")
 ```
-
 
 
 ---
