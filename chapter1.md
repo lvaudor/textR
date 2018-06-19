@@ -3,7 +3,10 @@ title: Scraper des données du web
 title_meta: Chapter 1
 description: Ce chapitre vous montre comment scraper des données textuelles de sites web a l' aide des fonctions du package rvest.
 ---
+
 ## Un exo pour comprendre les exos Datacamp
+
+Cet exercice sert purement et simplement à vous montrer comment fonctionne la plateforme Datacamp... 
 
 ```yaml
 type: NormalExercise
@@ -16,9 +19,13 @@ skills: 1
 
 `@instructions`
 
-Pour tester
+Ici, vous trouverez les instructions pour réaliser les exercices.
+
+En haut à droite de l'écran, vous avez l'équivalent d'un éditeur de scripts R.  Dans la plupart des exercices il sera rempli avec quelques lignes de commandes (éventuellement, à trous, comme ça: -___-) à compléter en fonction des instructions.
+
 
 `@hint`
+Ici, si vous êtes coincé, vous trouverez des indices sur ce qu'on attend de vous.
 
 `@pre_exercise_code`
 ```{r}
@@ -37,9 +44,12 @@ a=32
 `@sct`
 ```{r}
 test_error
+success_msg("Parfait! Vous allez pouvoir vous lancer dans les 'vrais' exercices...")
+
 ```
+
 ---
-## Extraire un élément textuel d'une page web depuis R
+## Extraire un élément textuel d'une page web
 
 ```yaml
 type: NormalExercise
@@ -116,7 +126,7 @@ success_msg("Bravo! A défaut de pouvoir lécher la casserole, vous pouvez scrap
 
 
 ---
-## Se repérer dans l'arborescence d'une page web
+## Se repérer dans la page web
 
 ```yaml
 type: NormalExercise
@@ -173,7 +183,7 @@ success_msg("Bien joué! Prenons maintenant notre nom de recette, nos ingrédien
 ```
 
 ---
-## Retour au format rectangulaire, et mise en fonction!
+## Retour au format rectangulaire
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -230,7 +240,11 @@ Que fait la fonction `recup_ingredients()`?
 
 `@sct`
 ```{r}
-test_mc(correct = 2)
+msg1="Non, l'objet en sortie (tib) n'est pas une liste, mais une table (tibble)"
+msg2="Avez-vous remarqué que non contents d'être revenus au format rectangulaire, nous avons mis l'ensemble des opérations en fonction??"
+msg3="Non, nous sommes allés plus loin que la simple extraction des éléments html..."
+msg4="Non, telle que cette fonction est écrite, on ne peut pas fournir en entrée le nom de la recette..."
+test_mc(2, feedback_msgs = c(msg1, msg2, msg3, msg4))
 ```
 
 
@@ -312,4 +326,5 @@ tib_ingredients=bind_rows(tibs)
 `@sct`
 ```{r}
 test_error
+success_msg("Super! Vous savez maintenant itérer une fonction grâce aux fonctions de purrr... Trop fort, non?")
 ```
