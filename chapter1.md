@@ -231,12 +231,8 @@ Que fait la fonction `recup_ingredients()`?
 - Elle prend en entrée le **nom** d'une recette Marmiton et renvoie en sortie une **table** renseignant les ingrédients et leurs quantités
 
 `@hint`
+- Le nom de l'input (`url`) et de l'output (`tib`) sont des indices, car la fonction est vraiment très bien écrite!...
 
-`@feedback`
-- Non, l'objet en sortie (tib) n'est pas une liste, mais une table (tibble)
-- Oui!! c'est bien ça...
-- Non, nous sommes allés plus loin que la simple extraction des éléments html...
-- Non, telle que cette fonction est écrite, on ne peut pas fournir en entrée le nom de la recette...
 
 `@sct`
 ```{r}
@@ -244,7 +240,7 @@ msg1="Non, l'objet en sortie (tib) n'est pas une liste, mais une table (tibble)"
 msg2="Avez-vous remarqué que non contents d'être revenus au format rectangulaire, nous avons mis l'ensemble des opérations en fonction??"
 msg3="Non, nous sommes allés plus loin que la simple extraction des éléments html..."
 msg4="Non, telle que cette fonction est écrite, on ne peut pas fournir en entrée le nom de la recette..."
-test_mc(2, feedback_msgs = c(msg1, msg2, msg3, msg4))
+test_mc(correct=2, feedback_msgs = c(msg1, msg2, msg3, msg4))
 ```
 
 
@@ -270,6 +266,7 @@ Deux objets se trouvent déjà dans l'environnement:
 Appliquez itérativement la fonction `recup_ingredients()` à `urls`, à l'aide de la fonction `map()` du package `purrr`.
 
 `@hint`
+Avez-vous bien indiqué le nom de la liste et le nom de la fonction aux bons endroits? (Indiquez le nom de la fonction sans guillemets!)...
 
 `@pre_exercise_code`
 ```{r}
