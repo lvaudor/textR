@@ -305,10 +305,10 @@ recup_ingredients=function(url){
 ```{r}
 library(purrr)
 
-# Applique itérativement recup_ingredients à chaque élément de urls
+# Applique iterativement recup_ingredients à chaque element de urls
 tibs=map(.x=___,.f=___)
 
-# Recolle toutes les tables en une seule (possible car même nombre de colonnes)
+# Recolle toutes les tables en une seule (possible car meme nombre de colonnes)
 tib_ingredients=bind_rows(tibs)
 ```
 
@@ -316,10 +316,10 @@ tib_ingredients=bind_rows(tibs)
 ```{r}
 library(purrr)
 
-# Applique itérativement recup_ingredients à chaque élément de urls
-tibs=map(.x=___,.f=___)
+# Applique iterativement recup_ingredients a chaque element de urls
+tibs=map(.x=url,.f=recup_ingredients)
 
-# Recolle toutes les tables en une seule (possible car même nombre de colonnes)
+# Recolle toutes les tables en une seule (possible car meme nombre de colonnes)
 tib_ingredients=bind_rows(tibs)
 ```
 
