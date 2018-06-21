@@ -2,10 +2,36 @@
 title: Scraper des données du web
 title_meta: Chapter 1
 description: Ce chapitre vous montre comment scraper des données textuelles de sites web a l' aide des fonctions du package rvest.
+
 ---
+## Test
+
+```yaml
+type: PureMultipleChoiceExercise
+key: 7d56dca38a
+xp: 50
+skills: 1
+```
+
+
+`@possible_answers`
+- A
+- B
+- C
+
+`@hint`
+blablabla
+
+
+`@sct`
+```{r}
+test_mc(correct=2,feedback_msgs = c("Non","Oui","Non"))
+```
 
 
 
+
+---
 ## Un exo pour comprendre les exos Datacamp
 
 Cet exercice sert purement et simplement à vous montrer comment fonctionne la plateforme Datacamp... 
@@ -63,30 +89,6 @@ success_msg("Parfait! Vous allez pouvoir vous lancer dans les 'vrais' exercices.
 
 ```
 
-
----
-## Test
-
-```yaml
-type: PureMultipleChoiceExercise
-key: 281dc7d965
-xp: 50
-skills: 1
-```
-
-
-`@possible_answers`
--A
--B
--C
-
-`@hint`
-blabla
-
-`@sct`
-```{r}
-test_mc(2,c("Non","oui","Non")
-```
 
 
 ---
@@ -228,7 +230,7 @@ success_msg("Bien joué! Prenons maintenant notre nom de recette, nos ingrédien
 
 ```yaml
 type: PureMultipleChoiceExercise
-key: 81e8e12acf
+key: e53526251d
 xp: 25
 skills: 1
 ```
@@ -272,11 +274,10 @@ Que fait la fonction `recup_ingredients()`?
 - Elle prend en entrée le **nom** d'une recette Marmiton et renvoie en sortie une **table** renseignant les ingrédients et leurs quantités
 
 `@hint`
-- Le nom de l'input (`url`) et de l'output (`tib`) sont des indices, car la fonction est vraiment très bien écrite!...
+Le nom de l'input (`url`) et de l'output (`tib`) sont des indices, car la fonction est vraiment très bien écrite!...
 
 `@pre_exercise_code`
 ```{r}
-
 ```
 
 `@sct`
