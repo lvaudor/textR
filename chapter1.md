@@ -247,7 +247,7 @@ Que fait la fonction `recup_ingredients()`?
 - Le nom de l'input (`url`) et de l'output (`tib`) sont des indices, car la fonction est vraiment très bien écrite!...
 
 
-`@feedback`
+`@sct`
 ```{r}
 msg1="Non, l'objet en sortie (tib) n'est pas une liste, mais une table (tibble)"
 msg2="Avez-vous remarqué que non contents d'être revenus au format rectangulaire, nous avons mis l'ensemble des opérations en fonction??"
@@ -283,6 +283,9 @@ Avez-vous bien indiqué le nom de la liste et le nom de la fonction aux bons end
 
 `@pre_exercise_code`
 ```{r}
+
+library(rvest)
+library(dplyr)
 urls=list("http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx",
           "http://www.marmiton.org/recettes/recette_milk-shake-pomme-banane-et-kiwi_312444.aspx",
           "http://www.marmiton.org/recettes/recette_salade-de-fruits-hivernale_86644.aspx",
@@ -313,7 +316,6 @@ recup_ingredients=function(url){
 
 `@sample_code`
 ```{r}
-library(rvest)
 library(purrr)
 
 # Applique iterativement recup_ingredients à chaque element de urls
@@ -325,7 +327,6 @@ tib_ingredients=bind_rows(tibs)
 
 `@solution`
 ```{r}
-library(rvest)
 library(purrr)
 
 # Applique iterativement recup_ingredients a chaque element de urls
@@ -340,3 +341,5 @@ tib_ingredients=bind_rows(tibs)
 test_error()
 success_msg("Super! Vous savez maintenant itérer une fonction grâce aux fonctions de purrr... Trop fort, non?")
 ```
+
+
