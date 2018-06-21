@@ -283,7 +283,6 @@ Avez-vous bien indiqué le nom de la liste et le nom de la fonction aux bons end
 
 `@pre_exercise_code`
 ```{r}
-library(rvest)
 urls=list("http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx",
           "http://www.marmiton.org/recettes/recette_milk-shake-pomme-banane-et-kiwi_312444.aspx",
           "http://www.marmiton.org/recettes/recette_salade-de-fruits-hivernale_86644.aspx",
@@ -314,6 +313,7 @@ recup_ingredients=function(url){
 
 `@sample_code`
 ```{r}
+library(rvest)
 library(purrr)
 
 # Applique iterativement recup_ingredients à chaque element de urls
