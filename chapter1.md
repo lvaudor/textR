@@ -317,7 +317,7 @@ library(rvest)
 library(purrr)
 
 # Applique iterativement recup_ingredients à chaque element de urls
-tibs=map(.x=___,.f=___)
+tibs=map(___,___)
 
 # Recolle toutes les tables en une seule (possible car meme nombre de colonnes)
 tib_ingredients=bind_rows(tibs)
@@ -325,10 +325,11 @@ tib_ingredients=bind_rows(tibs)
 
 `@solution`
 ```{r}
+library(rvest)
 library(purrr)
 
 # Applique iterativement recup_ingredients a chaque element de urls
-tibs=map(.x=url,.f=recup_ingredients)
+tibs=map(urls,recup_ingredients)
 
 # Recolle toutes les tables en une seule (possible car meme nombre de colonnes)
 tib_ingredients=bind_rows(tibs)
