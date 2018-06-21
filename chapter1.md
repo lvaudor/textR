@@ -19,13 +19,21 @@ skills: 1
 
 `@instructions`
 
-Ici, vous trouverez les instructions pour réaliser les exercices.
+Ici, vous trouverez les **instructions** pour réaliser les exercices.
 
-En haut à droite de l'écran, vous avez l'équivalent d'un éditeur de scripts R.  Dans la plupart des exercices il sera rempli avec quelques lignes de commandes (éventuellement, à trous, comme ça: -___-) à compléter en fonction des instructions.
+En face, vous avez **en haut à droite** un éditeur, et en **bas à gauche** une **console R**. Vous pouvez utiliser cette console pour tester votre code... L'environnement peut déjà contenir un certain nombre d'objets (des jeux de données par exemple).
+
+Une fois que vous avez **complété** et **testé** les lignes de commandes, et que vous pensez avoir la solution de l'exercice, vous pouvez **soumettre votre réponse** en appuyant sur le bouton "Submit". Un certain nombre de tests sont alors exécutés automatiquement pour déterminer si vous avez bien réussi l'exercice.
+
+Si vous ne parvenez pas à résoudre l'exercice, vous pouvez demander un indice (bouton **hint**, à gauche).
+
+Si vous avez effacé certaines portions du code fourni au début et que vous estimez que c'était une erreur, vous pouvez appuyer sur le bouton "flèche en rond" (**reset sample code**).
+
+Ici, imaginons que le but de l'exercice soit d'assigner la valeur 33 à l'objet `a`.
 
 
 `@hint`
-Ici, si vous êtes coincé, vous trouverez des indices sur ce qu'on attend de vous.
+Avez-vous bien changé ___ en '33'?
 
 `@pre_exercise_code`
 ```{r}
@@ -33,17 +41,22 @@ Ici, si vous êtes coincé, vous trouverez des indices sur ce qu'on attend de vo
 
 `@sample_code`
 ```{r}
-a=33
+# L'éditeur fonctionne (à peu de choses près) comme l'éditeur RStudio. Vous pouvez envoyer une ligne de code vers la console (en bas) en vous plaçant sur la ligne et en tapant Ctrl+Entrée sur votre clavier. Vous pouvez aussi envoyer l'ensemble de vos lignes de commandes en appuyant sur le bouton "Run code".
+
+# Dans la plupart des exercices quelques lignes de commandes seront fournies, et ce sera à vous de les compléter en fonction des instructions.
+
+a<-___
 ```
 
 `@solution`
 ```{r}
-a=32
+a<-33
 ```
 
 `@sct`
 ```{r}
 test_error()
+test_object("a")
 success_msg("Parfait! Vous allez pouvoir vous lancer dans les 'vrais' exercices...")
 
 ```
@@ -236,10 +249,10 @@ Que fait la fonction `recup_ingredients()`?
 
 `@sct`
 ```{r}
-msg1="Non, l'objet en sortie (tib) n'est pas une liste, mais une table (tibble)"
-msg2="Avez-vous remarqué que non contents d'être revenus au format rectangulaire, nous avons mis l'ensemble des opérations en fonction??"
-msg3="Non, nous sommes allés plus loin que la simple extraction des éléments html..."
-msg4="Non, telle que cette fonction est écrite, on ne peut pas fournir en entrée le nom de la recette..."
+msg1="non"#"Non, l'objet en sortie (tib) n'est pas une liste, mais une table (tibble)"
+msg2="oui"#"Avez-vous remarqué que non contents d'être revenus au format rectangulaire, nous avons mis l'ensemble des opérations en fonction??"
+msg3="non"#"Non, nous sommes allés plus loin que la simple extraction des éléments html..."
+msg4="non"#"Non, telle que cette fonction est écrite, on ne peut pas fournir en entrée le nom de la recette..."
 test_mc(correct=2, feedback_msgs = c(msg1, msg2, msg3, msg4))
 ```
 
