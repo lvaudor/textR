@@ -247,12 +247,12 @@ Que fait la fonction `recup_ingredients()`?
 - Le nom de l'input (`url`) et de l'output (`tib`) sont des indices, car la fonction est vraiment très bien écrite!...
 
 
-`@sct`
+`@feedback`
 ```{r}
-msg1="non"#"Non, l'objet en sortie (tib) n'est pas une liste, mais une table (tibble)"
-msg2="oui"#"Avez-vous remarqué que non contents d'être revenus au format rectangulaire, nous avons mis l'ensemble des opérations en fonction??"
-msg3="non"#"Non, nous sommes allés plus loin que la simple extraction des éléments html..."
-msg4="non"#"Non, telle que cette fonction est écrite, on ne peut pas fournir en entrée le nom de la recette..."
+msg1="Non, l'objet en sortie (tib) n'est pas une liste, mais une table (tibble)"
+msg2="Avez-vous remarqué que non contents d'être revenus au format rectangulaire, nous avons mis l'ensemble des opérations en fonction??"
+msg3="Non, nous sommes allés plus loin que la simple extraction des éléments html..."
+msg4="Non, telle que cette fonction est écrite, on ne peut pas fournir en entrée le nom de la recette..."
 test_mc(correct=2, feedback_msgs = c(msg1, msg2, msg3, msg4))
 ```
 
