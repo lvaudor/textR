@@ -6,72 +6,6 @@ description: Ce chapitre vous montre comment scraper des données textuelles de 
 
 
 
-
-```yaml
-type: PureMultipleChoiceExercise
-key: 81e8e12acf
-xp: 25
-skills: 1
-```
-
-Examinez le code suivant:
-
-```{r}
-library(rvest)
-library(dplyr)
-
-recup_ingredients=function(url){
-    html<-read_html(url)
-    # Recupere titre
-    titre<-html %>%
-      html_nodes(".main-title") %>% 
-      html_text()
-    # Recupere quantites
-    quantites<-html %>%
-      html_nodes(".recipe-ingredient-qt")  %>%
-      html_text()
-    # Recupere ingredients
-    ingredients<-html %>%
-      html_nodes(".ingredient") %>% 
-      html_text()
-    # Rassemble le tout dans une tibble 
-    tib<-bind_cols(url=rep(url,length(ingredients)),
-                   titre=rep(titre, length(ingredients)),
-                   quantites=quantites,
-                   ingredients=ingredients)
-    return(tib)
-}
-```
-
-Que fait la fonction `recup_ingredients()`?
-
-
-`@possible_answers`
-- Elle prend en entrée l'**url** d'une recette Marmiton et renvoie en sortie une **liste** de la liste des ingrédients et de la liste des quantités.
-- Elle prend en entrée l'**url** d'une recette Marmiton et renvoie en sortie une **table** renseignant les ingrédients et leurs quantités.
-- Elle prend en entrée l'**url** d'une recette Marmiton et renvoie en sortie les **éléments html** ("nodes") relatifs aux ingrédients.
-- Elle prend en entrée le **nom** d'une recette Marmiton et renvoie en sortie une **table** renseignant les ingrédients et leurs quantités
-
-`@hint`
-- Le nom de l'input (`url`) et de l'output (`tib`) sont des indices, car la fonction est vraiment très bien écrite!...
-
-`@pre_exercise_code`
-```{r}
-
-```
-
-`@sct`
-```{r}
-msg1="Non, l'objet en sortie (tib) n'est pas une liste, mais une table (tibble)"
-msg2="Avez-vous remarqué que non contents d'être revenus au format rectangulaire, nous avons mis l'ensemble des opérations en fonction??"
-msg3="Non, nous sommes allés plus loin que la simple extraction des éléments html..."
-msg4="Non, telle que cette fonction est écrite, on ne peut pas fournir en entrée le nom de la recette..."
-test_mc(correct=2, feedback_msgs = c(msg1, msg2, msg3, msg4))
-```
-
-
-
-
 ## Un exo pour comprendre les exos Datacamp
 
 Cet exercice sert purement et simplement à vous montrer comment fonctionne la plateforme Datacamp... 
@@ -135,25 +69,23 @@ success_msg("Parfait! Vous allez pouvoir vous lancer dans les 'vrais' exercices.
 
 ```yaml
 type: PureMultipleChoiceExercise
-key: 7d56dca38a
+key: 281dc7d965
 xp: 50
 skills: 1
 ```
 
 
 `@possible_answers`
-- A
-- B
-- C
+-A
+-B
+-C
 
 `@hint`
-blablabla
-
+blabla
 
 `@sct`
-
 ```{r}
-test_mc(2,c("Non","Oui","Non"))
+test_mc(2,c("Non","oui","Non")
 ```
 
 
@@ -296,7 +228,7 @@ success_msg("Bien joué! Prenons maintenant notre nom de recette, nos ingrédien
 
 ```yaml
 type: PureMultipleChoiceExercise
-key: e53526251d
+key: 81e8e12acf
 xp: 25
 skills: 1
 ```
