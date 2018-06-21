@@ -7,7 +7,7 @@ description: Ce chapitre vous montre comment scraper des données textuelles de 
 ## Test
 
 ```yaml
-type: PureMultipleChoiceExercise
+type: MultipleChoiceExercise
 key: 7d56dca38a
 xp: 50
 skills: 1
