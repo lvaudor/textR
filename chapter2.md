@@ -35,7 +35,7 @@ ingredients=c("cuillère à soupe d'huile",
               "g de farine",
               "cuillère à café d'extrait de vanille")
 
-ingredients_corr=
+ingredients_corr=___
 ```
 
 `@solution`
@@ -48,7 +48,7 @@ ingredients=c("cuillère à soupe d'huile",
               "g de farine",
               "cuillère à café d'extrait de vanille")
 
-ingredients_corr=
+ingredients_corr=str_replace(ingredients, "cuillère à soupe","CàS")
 ```
 
 `@sct`
@@ -108,7 +108,7 @@ test_mc(correct=2, feedback_msgs = c(msg1, msg2, msg3, msg4))
 
 ---
 
-## <<<New Exercise>>>
+## Décomposer une chaîne de caractère
 
 ```yaml
 type: NormalExercise
@@ -146,8 +146,10 @@ ingredients=c(" g de chocolat",
               " g de café soluble",
               " l de lait")
 
-str_match(quantites,"(\\w?g|\\w?l)(.*)")
-str_match(quantites,"(\\w?g|\\w?l)(___)(.*)"
+match1=str_match(quantites,"(\\w?g|\\w?l)(.*)")
+match1
+match2=str_match(quantites,"(\\w?g|\\w?l)(___)(.*)"
+match2
 ```
 
 `@solution`
@@ -161,11 +163,13 @@ ingredients=c(" g de chocolat",
               " g de café soluble",
               " l de lait")
 
-str_match(quantites,"(\\w?g|\\w?l)(.*)")
-str_match(quantites,"(\\w?g|\\w?l)( de | d\')(.*)"
+match1=str_match(quantites,"(\\w?g|\\w?l)(.*)")
+match1
+match2=str_match(quantites,"(\\w?g|\\w?l)( de | d\')(.*)")
+match2
 ```
 
 `@sct`
 ```{r}
-
+test_error()
 ```
