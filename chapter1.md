@@ -1,35 +1,7 @@
 ---
 title: Scraper des données du web
 title_meta: Chapter 1
-description: Ce chapitre vous montre comment scraper des données textuelles de sites web a l' aide des fonctions du package rvest.
-
----
-## Test
-
-```yaml
-type: MultipleChoiceExercise
-key: 7d56dca38a
-xp: 50
-skills: 1
-```
-
-
-`@possible_answers`
-- A
-- B
-- C
-
-`@hint`
-blablabla
-
-
-`@sct`
-```{r}
-test_mc(correct=2,feedback_msgs = c("Non","Oui","Non"))
-```
-
-
-
+description: Ce chapitre vous montre comment scraper les informations affichées dans des pages html à l' aide des fonctions du package rvest.
 
 ---
 ## Un exo pour comprendre les exos Datacamp
@@ -229,7 +201,7 @@ success_msg("Bien joué! Prenons maintenant notre nom de recette, nos ingrédien
 ## Retour au format rectangulaire
 
 ```yaml
-type: PureMultipleChoiceExercise
+type: MultipleChoiceExercise
 key: e53526251d
 xp: 25
 skills: 1
@@ -275,10 +247,6 @@ Que fait la fonction `recup_ingredients()`?
 
 `@hint`
 Le nom de l'input (`url`) et de l'output (`tib`) sont des indices, car la fonction est vraiment très bien écrite!...
-
-`@pre_exercise_code`
-```{r}
-```
 
 `@sct`
 ```{r}

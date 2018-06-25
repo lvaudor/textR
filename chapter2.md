@@ -1,20 +1,22 @@
 ---
-title       : Insert the chapter title here
-description : Insert the chapter description here
+title       : Manipuler des chaînes de caractère
+description : Ce chapitre vous montre comment manipuler, transformer, nettoyer des chaînes de caractère à l'aide des fonctions du package stringr.
 ---
 
-## <<<New Exercise>>>
+## Remplacer un pattern par un autre
 
 ```yaml
 type: NormalExercise
 key: 4c919a781d
 lang: r
-xp: 100
+xp: 25
 skills: 1
 ```
 
 
 `@instructions`
+
+Transformez le vecteur `ingredients` en `ingredients_corr`, en remplaçant "cuillère à soupe" par "CàS" et en utilisant pour ce faire une des fonctions du package `stringr`.
 
 `@hint`
 
@@ -25,12 +27,142 @@ skills: 1
 
 `@sample_code`
 ```{r}
+library(stringr)
+ingredients=c("cuillère à soupe d'huile",
+              "dl de lait",
+              "cuillère de sucre",
+              "cuillère à soupe d'eau",
+              "g de farine",
+              "cuillère à café d'extrait de vanille")
 
+ingredients_corr=
 ```
 
 `@solution`
 ```{r}
+library(stringr)
+ingredients=c("cuillère à soupe d'huile",
+              "dl de lait",
+              "cuillère de sucre",
+              "cuillère à soupe d'eau",
+              "g de farine",
+              "cuillère à café d'extrait de vanille")
 
+ingredients_corr=
+```
+
+`@sct`
+```{r}
+test_error()
+test_object("ingredients")
+test_object("ingredients_corr")
+```
+
+
+---
+## Expression régulière
+
+```yaml
+type: MultipleChoiceExercise
+key: 4eb98c3ed1
+lang: r
+xp: 50
+skills: 1
+```
+
+
+`@instructions`
+Examinez cette expression régulière:
+
+```{r}
+"\\w?g"
+```
+
+Pour quels éléments le pattern sera-t-il détecté parmi les ingrédients suivants:
+
+- "kg de farine de blé",
+- "cuillère de sauce aigre-douce",
+- "dl de lait d'amande",
+- "g de chocolat amer")
+
+
+
+
+`@possible_answers`
+- "kg de farine de blé",et "cuillère de sauce aigre-douce"
+- "kg de farine de blé", "cuillère de sauce aigre-douce"," et "g de chocolat amer"
+- "kg de farine de blé et "g de chocolat amer
+- "g de chocolat amer"
+
+
+`@sct`
+```{r}
+msg1="Non, le point d'interrogation signifie 0 ou 1 lettre avant le 'g'..."
+msg2="Oui! le 'g' peut être placé n'importe où, et être (ou non) précédé d'une lettre"
+msg3="Non... N'y a-t-il pas un autre 'g' quelque part qui pourrait correspondre?"
+msg4="Non, le 'g' peut n'être précédé par rien, mais il peut aussi être précédé d'une lettre..."
+test_mc(correct=2, feedback_msgs = c(msg1, msg2, msg3, msg4))
+```
+
+
+
+---
+
+## <<<New Exercise>>>
+
+```yaml
+type: NormalExercise
+key: e183fa15f8
+lang: r
+xp: 100
+skills: 1
+```
+
+
+`@instructions`
+
+Examinez le code ci-contre. Le premier appel à str_match isole l'unité de mesure -"g" ou "l" précédé ou non d'une autre lettre- du reste des chaînes de caractère
+
+Complétez le deuxième appel pour aussi isoler les " de " ou " d'" dans les chaînes de caractère.
+
+`@hint`
+Avez-vous pensé aux espaces (un de part et d'autre du "de"), un avant le "d'", et à préceder l'apostrophe d'un "\" ?
+
+
+`@pre_exercise_code`
+```{r}
+
+```
+
+`@sample_code`
+
+```{r}
+library(stringr)
+
+ingredients=c(" g de chocolat",
+              " kg de farine", 
+              " ml de lait",
+              " dl d'huile",
+              " g de café soluble",
+              " l de lait")
+
+str_match(quantites,"(\\w?g|\\w?l)(.*)")
+str_match(quantites,"(\\w?g|\\w?l)(___)(.*)"
+```
+
+`@solution`
+```{r}
+library(stringr)
+
+ingredients=c(" g de chocolat",
+              " kg de farine", 
+              " ml de lait",
+              " dl d'huile",
+              " g de café soluble",
+              " l de lait")
+
+str_match(quantites,"(\\w?g|\\w?l)(.*)")
+str_match(quantites,"(\\w?g|\\w?l)( de | d\')(.*)"
 ```
 
 `@sct`
