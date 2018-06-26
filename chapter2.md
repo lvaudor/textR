@@ -28,27 +28,27 @@ Transformez le vecteur `ingredients` en `ingredients_corr`, en remplaçant "cuil
 `@sample_code`
 ```{r}
 library(stringr)
-ingredients=c("cuillère à soupe d'huile",
-              "dl de lait",
-              "cuillère de sucre",
-              "cuillère à soupe d'eau",
-              "g de farine",
-              "cuillère à café d'extrait de vanille")
+ingredients <- c("cuillère à soupe d'huile",
+                 "dl de lait",
+                 "cuillère de sucre",
+                 "cuillère à soupe d'eau",
+                 "g de farine",
+                 "cuillère à café d'extrait de vanille")
 
-ingredients_corr=___
+ingredients_corr <- ___
 ```
 
 `@solution`
 ```{r}
 library(stringr)
-ingredients=c("cuillère à soupe d'huile",
-              "dl de lait",
-              "cuillère de sucre",
-              "cuillère à soupe d'eau",
-              "g de farine",
-              "cuillère à café d'extrait de vanille")
+ingredients <- c("cuillère à soupe d'huile",
+                 "dl de lait",
+                 "cuillère de sucre",
+                 "cuillère à soupe d'eau",
+                 "g de farine",
+                 "cuillère à café d'extrait de vanille")
 
-ingredients_corr=str_replace(ingredients, "cuillère à soupe","CàS")
+ingredients_corr <- str_replace(ingredients, "cuillère à soupe","CàS")
 ```
 
 `@sct`
@@ -70,7 +70,6 @@ xp: 50
 skills: 1
 ```
 
-
 `@instructions`
 Examinez cette expression régulière:
 
@@ -85,26 +84,20 @@ Pour quels éléments le pattern sera-t-il détecté parmi les ingrédients suiv
 - "dl de lait d'amande",
 - "g de chocolat amer")
 
-
-
-
 `@possible_answers`
 - "kg de farine de blé",et "cuillère de sauce aigre-douce"
 - "kg de farine de blé", "cuillère de sauce aigre-douce"," et "g de chocolat amer"
 - "kg de farine de blé et "g de chocolat amer
 - "g de chocolat amer"
 
-
 `@sct`
 ```{r}
-msg1="Non, le point d'interrogation signifie 0 ou 1 lettre avant le 'g'..."
-msg2="Oui! le 'g' peut être placé n'importe où, et être (ou non) précédé d'une lettre"
-msg3="Non... N'y a-t-il pas un autre 'g' quelque part qui pourrait correspondre?"
-msg4="Non, le 'g' peut n'être précédé par rien, mais il peut aussi être précédé d'une lettre..."
+msg1 <- "Non, le point d'interrogation signifie 0 ou 1 lettre avant le 'g'..."
+msg2 <- "Oui! le 'g' peut être placé n'importe où, et être (ou non) précédé d'une lettre"
+msg3 <- "Non... N'y a-t-il pas un autre 'g' quelque part qui pourrait correspondre?"
+msg4 <- "Non, le 'g' peut n'être précédé par rien, mais il peut aussi être précédé d'une lettre..."
 test_mc(correct=2, feedback_msgs = c(msg1, msg2, msg3, msg4))
 ```
-
-
 
 ---
 
@@ -139,16 +132,16 @@ Avez-vous pensé aux espaces (un de part et d'autre du "de"), un avant le "d'", 
 ```{r}
 library(stringr)
 
-ingredients=c(" g de chocolat",
-              " kg de farine", 
-              " ml de lait",
-              " dl d'huile",
-              " g de café soluble",
-              " l de lait")
+ingredients <- c(" g de chocolat",
+                 " kg de farine", 
+                 " ml de lait",
+                 " dl d'huile",
+                 " g de café soluble",
+                 " l de lait")
 
-match1=str_match(ingredients,"(\\w?g|\\w?l)(.*)")
+match1 <- str_match(ingredients,"(\\w?g|\\w?l)(.*)")
 match1
-match2=str_match(ingredients,"(\\w?g|\\w?l)(___)(.*)"
+match2 <- str_match(ingredients,"(\\w?g|\\w?l)(___)(.*)"
 match2
 ```
 
@@ -156,16 +149,16 @@ match2
 ```{r}
 library(stringr)
 
-ingredients=c(" g de chocolat",
-              " kg de farine", 
-              " ml de lait",
-              " dl d'huile",
-              " g de café soluble",
-              " l de lait")
+ingredients <- c(" g de chocolat",
+                 " kg de farine", 
+                 " ml de lait",
+                 " dl d'huile",
+                 " g de café soluble",
+                 " l de lait")
 
-match1=str_match(ingredients,"(\\w?g|\\w?l)(.*)")
+match1 <- str_match(ingredients,"(\\w?g|\\w?l)(.*)")
 match1
-match2=str_match(ingredients,"(\\w?g|\\w?l)( de | d\')(.*)")
+match2 <- str_match(ingredients,"(\\w?g|\\w?l)( de | d\')(.*)")
 match2
 ```
 

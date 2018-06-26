@@ -103,16 +103,18 @@ Nous allons pour ce faire utiliser des fonctions du package `rvest`.
 ```{r}
 library(dplyr)
 library(rvest)
-url<-"http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
+url <- "http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
 
 # lire la page dans R
-html<-___(url)
+html <- ___(url)
 
 # sélectionner l'élément correspondant au titre de la recette
-element_titre<- html %>% html_nodes(___)
+element_titre <- html %>%
+    html_nodes(___)
 
 # extraire le contenu de cet élément
-titre <- element_titre %>% ___()
+titre <- element_titre %>%
+    ___()
 ```
 
 `@solution`
@@ -120,16 +122,18 @@ titre <- element_titre %>% ___()
 ```{r}
 library(dplyr)
 library(rvest)
-url<-"http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
+url <- "http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx"
 
 # lire la page dans R
-html<-read_html(url)
+html <- read_html(url)
 
 # sélectionner l'élément correspondant au titre de la recette
-element_titre<- html %>% html_nodes(".main-title")
+element_titre <- html %>%
+    html_nodes(".main-title")
 
 # extraire le contenu de cet élément
-titre <- element_titre %>% html_text()
+titre <- element_titre %>%
+    html_text()
 ```
 
 `@sct`
@@ -170,25 +174,25 @@ Les noms des ingrédients sont renseignés par les éléments de classe "ingredi
 `@pre_exercise_code`
 ```{r}
 library(rvest)
-html<-read_html("http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx")
+html <- read_html("http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx")
 ```
 
 `@sample_code`
 ```{r}
-ingredients=html %>%
+ingredients <- html %>%
   html_nodes(___) %>% 
   html_text()
-quantites=html %>%
+quantites <- html %>%
   html_nodes(___)  %>%
   html_text()
 ```
 
 `@solution`
 ```{r}
-quantites=html %>%
+quantites <- html %>%
   html_nodes(".recipe-ingredient-qt")  %>%
   html_text()
-ingredients=html %>%
+ingredients <- html %>%
   html_nodes(".ingredient") %>% 
   html_text()
 ```
@@ -217,22 +221,22 @@ Examinez le code suivant:
 library(rvest)
 library(dplyr)
 
-recup_ingredients=function(url){
-    html<-read_html(url)
+recup_ingredients <- function(url){
+    html <- read_html(url)
     # Recupere titre
-    titre<-html %>%
+    titre <- html %>%
       html_nodes(".main-title") %>% 
       html_text()
     # Recupere quantites
-    quantites<-html %>%
+    quantites <- html %>%
       html_nodes(".recipe-ingredient-qt")  %>%
       html_text()
     # Recupere ingredients
-    ingredients<-html %>%
+    ingredients <- html %>%
       html_nodes(".ingredient") %>% 
       html_text()
     # Rassemble le tout dans une tibble 
-    tib<-bind_cols(url=rep(url,length(ingredients)),
+    tib <- bind_cols(url=rep(url,length(ingredients)),
                    titre=rep(titre, length(ingredients)),
                    quantites=quantites,
                    ingredients=ingredients)
@@ -254,10 +258,10 @@ Le nom de l'input (`url`) et de l'output (`tib`) sont des indices, car la foncti
 
 `@sct`
 ```{r}
-msg1="Non, l'objet en sortie (tib) n'est pas une liste, mais une table (tibble)"
-msg2="Avez-vous remarqué que non contents d'être revenus au format rectangulaire, nous avons mis l'ensemble des opérations en fonction??"
-msg3="Non, nous sommes allés plus loin que la simple extraction des éléments html..."
-msg4="Non, telle que cette fonction est écrite, on ne peut pas fournir en entrée le nom de la recette..."
+msg1 <- "Non, l'objet en sortie (tib) n'est pas une liste, mais une table (tibble)"
+msg2 <- "Avez-vous remarqué que non contents d'être revenus au format rectangulaire, nous avons mis l'ensemble des opérations en fonction??"
+msg3 <- "Non, nous sommes allés plus loin que la simple extraction des éléments html..."
+msg4 <- "Non, telle que cette fonction est écrite, on ne peut pas fournir en entrée le nom de la recette..."
 test_mc(correct=2, feedback_msgs = c(msg1, msg2, msg3, msg4))
 ```
 
@@ -291,30 +295,30 @@ Avez-vous bien indiqué le nom de la liste et le nom de la fonction aux bons end
 
 library(rvest)
 library(dplyr)
-urls=list("http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx",
-          "http://www.marmiton.org/recettes/recette_milk-shake-pomme-banane-et-kiwi_312444.aspx",
-          "http://www.marmiton.org/recettes/recette_salade-de-fruits-hivernale_86644.aspx",
-          "http://www.marmiton.org/recettes/recette_muffins-moelleux-aux-chocolat-au-coeur-chocolat-blanc-banane-de-sandrine_65377.aspx",
-          "http://www.marmiton.org/recettes/recette_marbre-3-couleurs_222805.aspx")
-recup_ingredients=function(url){
-    html<-read_html(url)
+urls <- list("http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx",
+             "http://www.marmiton.org/recettes/recette_milk-shake-pomme-banane-et-kiwi_312444.aspx",
+             "http://www.marmiton.org/recettes/recette_salade-de-fruits-hivernale_86644.aspx",
+             "http://www.marmiton.org/recettes/recette_muffins-moelleux-aux-chocolat-au-coeur-chocolat-blanc-banane-de-sandrine_65377.aspx",
+             "http://www.marmiton.org/recettes/recette_marbre-3-couleurs_222805.aspx")
+recup_ingredients <- function(url){
+    html <- read_html(url)
     # Recupere titre
-    titre<-html %>%
+    titre <- html %>%
       html_nodes(".main-title") %>% 
       html_text()
     # Recupere quantites
-    quantites<-html %>%
+    quantites <- html %>%
       html_nodes(".recipe-ingredient-qt")  %>%
       html_text()
     # Recupere ingredients
-    ingredients<-html %>%
+    ingredients <- html %>%
       html_nodes(".ingredient") %>% 
       html_text()
     # Rassemble le tout dans une tibble 
-    tib<-bind_cols(url=rep(url,length(ingredients)),
-                   titre=rep(titre, length(ingredients)),
-                   quantites=quantites,
-                   ingredients=ingredients)
+    tib <- bind_cols(url=rep(url,length(ingredients)),
+                     titre=rep(titre, length(ingredients)),
+                     quantites=quantites,
+                     ingredients=ingredients)
     return(tib)
 }
 ```
@@ -324,10 +328,10 @@ recup_ingredients=function(url){
 library(purrr)
 
 # Applique iterativement recup_ingredients à chaque element de urls
-tibs=map(___,___)
+tibs <- map(___,___)
 
 # Recolle toutes les tables en une seule (possible car meme nombre de colonnes)
-tib_ingredients=bind_rows(tibs)
+tib_ingredients <- bind_rows(tibs)
 ```
 
 `@solution`
@@ -335,10 +339,10 @@ tib_ingredients=bind_rows(tibs)
 library(purrr)
 
 # Applique iterativement recup_ingredients a chaque element de urls
-tibs=map(urls,recup_ingredients)
+tibs <- map(urls,recup_ingredients)
 
 # Recolle toutes les tables en une seule (possible car meme nombre de colonnes)
-tib_ingredients=bind_rows(tibs)
+tib_ingredients <- bind_rows(tibs)
 ```
 
 `@sct`
