@@ -45,7 +45,11 @@ Avez-vous bien changé ___ en '33'?
 
 # Dans la plupart des exercices quelques lignes de commandes seront fournies, et ce sera à vous de les compléter en fonction des instructions.
 
-a<-___
+a <-___
+
+
+# Les évaluations d'exercice consistent parfois à vérifier que la valeur de certains objets que vous avez créés correspond à ce qu'on attend...
+# Essayez donc de ne pas changer leur nom au risque que la validation de votre exercice échoue...
 ```
 
 `@solution`

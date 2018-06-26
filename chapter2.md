@@ -146,9 +146,9 @@ ingredients=c(" g de chocolat",
               " g de café soluble",
               " l de lait")
 
-match1=str_match(quantites,"(\\w?g|\\w?l)(.*)")
+match1=str_match(ingredients,"(\\w?g|\\w?l)(.*)")
 match1
-match2=str_match(quantites,"(\\w?g|\\w?l)(___)(.*)"
+match2=str_match(ingredients,"(\\w?g|\\w?l)(___)(.*)"
 match2
 ```
 
@@ -163,13 +163,16 @@ ingredients=c(" g de chocolat",
               " g de café soluble",
               " l de lait")
 
-match1=str_match(quantites,"(\\w?g|\\w?l)(.*)")
+match1=str_match(ingredients,"(\\w?g|\\w?l)(.*)")
 match1
-match2=str_match(quantites,"(\\w?g|\\w?l)( de | d\')(.*)")
+match2=str_match(ingredients,"(\\w?g|\\w?l)( de | d\')(.*)")
 match2
 ```
 
 `@sct`
 ```{r}
 test_error()
+test_object("ingredients")
+test_object("match1")
+test_object("match2")
 ```
