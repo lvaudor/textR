@@ -119,7 +119,7 @@ tib_comments_mainwords <- anti_join(tib_comments_words,
 `@sct`
 ```{r}
 test_error()
-test_object(tib_comments_mainwords)
+test_object("tib_comments_mainwords")
 ```
 
 
@@ -172,6 +172,7 @@ tib_comments_mainwords_stemmed <-  pr_stem_words(tib_comments_mainwords,
 
 `@sct`
 ```{r}
+test_error()
 test_object(tib_comments_mainwords_stemmed)
 ```
 
@@ -246,4 +247,5 @@ tib_comments_polarity  %>%
 `@sct`
 ```{r}
 test_error()
+test_object(tib_comments_polarity)
 ```
