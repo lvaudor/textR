@@ -1,7 +1,6 @@
 ---
 title       : Visualisation
-description : Insert the chapter description here
-
+description : Ce chapitre vous montre comment réaliser quelques graphiques à partir de données lexicales.
 
 ---
 

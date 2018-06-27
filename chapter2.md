@@ -1,6 +1,6 @@
 ---
 title       : Manipuler des chaînes de caractère
-description : Ce chapitre vous montre comment manipuler, transformer, nettoyer des chaînes de caractère à l'aide des fonctions du package stringr.
+description : Ce chapitre vous montre comment manipuler, transformer, nettoyer des chaînes de caractère à l'aide des fonctions du package `stringr`.
 ---
 
 ## Remplacer un pattern par un autre

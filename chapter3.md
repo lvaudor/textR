@@ -1,6 +1,6 @@
 ---
 title       : Manipuler du texte en langage naturel
-description : Insert the chapter description here
+description : Ce chapitre vous montre comment à partir de texte en langage naturel (ici en français) mettre en forme des tables clean et tidy vous permettant quelques analyses lexicales.
 
 
 ---
@@ -19,7 +19,6 @@ skills: 1
 Examinez les premiers commentaires de la table `tib_comments` (déjà présente dans l'environnement). Dans cette table, **une ligne** correspond à **un commentaire**.
 
 Tokenizez les commentaires pour obtenir la table `tib_comments_words`, pour laquelle **une ligne** correspond à **un mot**.
-
 
 
 `@hint`
@@ -41,9 +40,9 @@ tib_comments %>%
     head()
 
 library(tidytext)                              
-tib_comments_words=unnest_tokens(tib_comments,
-                                output=___,
-                                input=___)
+tib_comments_words <- unnest_tokens(tib_comments,
+                                    output=___,
+                                    input=___)
 ```
 
 `@solution`
@@ -54,9 +53,9 @@ tib_comments %>%
     head()
 
 library(tidytext)  
-tib_comments_words=unnest_tokens(tib_comments,
-                                output="word",
-                                input="commentext")
+tib_comments_words <- unnest_tokens(tib_comments,
+                                    output="word",
+                                    input="commentext")
 ```
 
 `@sct`
@@ -161,14 +160,14 @@ tib_comments_mainwords <- anti_join(tib_comments_words,
 `@sample_code`
 ```{r}
 library(proustr)
-tib_comments_mainwords_stemmed=___
+tib_comments_mainwords_stemmed <- ___
 ```
 
 `@solution`
 ```{r}
 library(proustr)
-tib_comments_mainwords_stemmed=pr_stem_words(tib_comments_mainwords,
-                                             word)
+tib_comments_mainwords_stemmed <-  pr_stem_words(tib_comments_mainwords,
+                                                 word)
 ```
 
 `@sct`
@@ -189,7 +188,6 @@ skills: 1
 
 
 `@instructions`
-
 
 - récupérez les tables `scores` et `sentiments` qui associent, respectivement, une **polarité** (positive ou négative) et un **sentiment** à un certain nombre de mots en français.
 - réalisez la jointure qui permet d'associer les mots issus des commentaires des recettes à une polarité positive ou négative (on repart de la table `tib_comments_mainwords`, déjà présente dans l'environnement).
