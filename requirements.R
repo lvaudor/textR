@@ -15,6 +15,7 @@ install_version("rvest","0.3.2")
 install_version("readr","1.1.1")
 install_version("proustr","0.2.1")
 install_version("wordcloud","2.5")
+install_version("ggraph","1.0.1")
 #### Install packages in development from GitHub #####
 
 # install_github("nicholasehamilton/ggtern")
