@@ -69,6 +69,7 @@ check_arg(.,"output") %>% check_equal()
 check_arg(.,"input") %>% check_equal()
 }
 ex() %>% check_object("tib_mots") %>% check_equal()
+success_msg("Yes! La fonction `unnest_tokens()` nous mâche bien le travail pour la suite...")
 ```
 
 ---
@@ -135,7 +136,7 @@ check_arg("x") %>% check_equal()
 check_arg("y") %>% check_equal()
 }
 test_object("tib_comments_mainwords")
-success_msg("Super! On va maintenant ce concentrer sur ce tableau `tib_mots_nonvides` pour la suite des exercices...")
+success_msg("Super! On va maintenant se concentrer sur ce tableau `tib_mots_nonvides` pour la suite des exercices...")
 ```
 
 
@@ -191,8 +192,8 @@ ex() %>% check_error()
 ex() %>% check_library("proustr")
 ex() %>% check_object("tib_racines") %>% check_equal()
 ex() %>% check_function("pr_stem_words") %>% {
-check_arg("df") %>% check_equal()
-check_arg("col") %>% check_equal()
+check_arg(.,"df") %>% check_equal()
+check_arg(.,"col") %>% check_equal()
 }
 success_msg("Bien joué! Vous pouvez constater que la racinisation est très simple à mettre en oeuvre grâce à la fonction `pr_stem_words()`")
 ```
@@ -273,4 +274,6 @@ ex() %>% check_library("dplyr")
 ex() %>% check_object("scores") %>% check_equal()
 ex() %>% check_object("polarites") %>% check_equal()
 ex() %>% check_object("tib_polarites") %>% check_equal()
+
+success_msg("Très bien! Comme vous pouvez le voir le lexique de Marmiton ressort plutôt comme positif... C'est un feel-good site!")
 ```

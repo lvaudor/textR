@@ -191,27 +191,45 @@ skills: 1
 
 
 `@instructions`
-Le vecteur `notes` ci-contre correspond à des notes attribuées par les internautes aux recettes Marmiton. 
+
+Créez un vecteur `quantifies` qui ne comprend que les éléments de `ingredients` qui **contiennent des caractères numériques**.
 
 
 `@hint`
 
 `@pre_exercise_code`
 ```{r}
-
 ```
 
 `@sample_code`
 ```{r}
-notes <- c("5/5","3/5","4/5","5/5","4/5")
+library(stringr)
+
+ingredients <- c("du sucre",
+                 "2 cuillères de miel",
+                 "33g de poudre d'amandes",
+                 "une boîte de poires au sirop de 300g",
+                 "des noisettes grillées")
+                
+quantifies=str_subset(ingredients,___)
 ```
 
 `@solution`
 ```{r}
+library(stringr)
 
+ingredients <- c("du sucre",
+                 "2 cuillères de miel",
+                 "33g de poudre d'amandes",
+                 "une boîte de poires au sirop de 300g",
+                 "des noisettes grillées")
+                
+quantifies=str_subset(ingredients,"\\d")
 ```
 
 `@sct`
 ```{r}
-
+ex() %>% check_error()
+ex() %>% check_library("stringr")
+ex() %>% check_object("quantifies") %>% check_equal()
 ```
