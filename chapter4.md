@@ -114,7 +114,7 @@ tib_mots_nonvides <- anti_join(tib_mots,
 tib_mots_frequence=tib_mots_nonvides %>% 
   group_by(word) %>% 
   summarise(freq=n()) %>% 
-  sample_n(___,___)
+  top_n(___,___)
 
 library(ggplot2)
 ggplot(tib_mots_frequence, aes(x=___, y=___))+
@@ -127,7 +127,7 @@ ggplot(tib_mots_frequence, aes(x=___, y=___))+
 tib_mots_frequence=tib_mots_nonvides %>% 
   group_by(word) %>% 
   summarise(freq=n()) %>% 
-  sample_n(15,freq)
+  top_n(15,freq)
 
 library(ggplot2)
 ggplot(tib_mots_frequence, aes(x=word, y=freq))+
@@ -139,11 +139,15 @@ ggplot(tib_mots_frequence, aes(x=word, y=freq))+
 ```{r}
 ex() %>% check_error()
 ex() %>% check_library("ggplot2")
+
+ex() %>% check_function("top_n") %>% check_arg("n") %>% check_equal()
+
 ex() %>% check_function("ggplot") %>% {
 check_arg(.,"data") %>% check_equal()
 check_arg(.,"mapping") %>% check_equal()
 }
+
 ex() %>% check_function("coord_flip")
-ex() %>% check_function("geom_bar")
+ex() %>% check_function("geom_bar") %>% check_arg("stat") %>% check_equal()
 success_msg("Bravo! Voilà un graphique simple mais efficace pour représenter les fréquences lexicales.")
 ```
