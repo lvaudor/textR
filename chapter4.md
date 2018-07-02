@@ -67,6 +67,7 @@ ex() %>% check_function("wordcloud") %>% {
 check_arg(.,"freq") %>% check_equal()
 check_arg(.,"word") %>% check_equal()
 }
+success_msg("Bien joué! Un nuage de mots sur un rapport, c'est comme un espuma sur une assiette: ça en jette.")
 ```
 
 
@@ -85,7 +86,11 @@ skills: 1
 
 `@instructions`
 
+On va maintenant réaliser un diagramme en bâtons montrant les 20 mots les plus fréquents à l'aide des fonctions de `ggplot2`
+
 `@hint`
+Avez-vous bien utilisé la fonction `geom_bar()` en spécifiant que l'on représente en y f(y) où f= la fonction identité?
+
 
 `@pre_exercise_code`
 ```{r}
@@ -132,4 +137,5 @@ library(ggplot2)
 `@sct`
 ```{r}
 ex() %>% check_error()
+success_msg("bravo!")
 ```

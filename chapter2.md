@@ -16,7 +16,7 @@ skills: 1
 
 `@instructions`
 
-Transformez le vecteur `ingredients` en `ingredients_corr`, en remplaçant "cuillère à soupe" par "CàS" et en utilisant pour ce faire une des fonctions du package `stringr`.
+Transformez le vecteur `ingredients` en `ingredients_corr`, en **remplaçant** "cuillère à soupe" par "CàS" et en utilisant pour ce faire une des fonctions du package `stringr`.
 
 `@hint`
 
@@ -67,7 +67,7 @@ check_arg(.,"replacement") %>% check_equal()
 
 
 ---
-## Expression régulière
+## Comprendre une expression régulière
 
 ```yaml
 type: MultipleChoiceExercise
@@ -107,6 +107,7 @@ test_mc(correct=2, feedback_msgs = c(msg1, msg2, msg3, msg4))
 ```
 
 ---
+
 
 ## Décomposer une chaîne de caractère
 
@@ -175,4 +176,42 @@ ex() %>% check_error()
 ex() %>% check_library("stringr")
 ex() %>% check_object("ingredients") %>% check_equal()
 ex() %>% check_object("match2") %>% check_equal()
+```
+
+---
+## Ecrire une expression régulière
+
+```yaml
+type: NormalExercise
+key: cf6710de05
+lang: r
+xp: 100
+skills: 1
+```
+
+
+`@instructions`
+Le vecteur `notes` ci-contre correspond à des notes attribuées par les internautes aux recettes Marmiton. 
+
+
+`@hint`
+
+`@pre_exercise_code`
+```{r}
+
+```
+
+`@sample_code`
+```{r}
+notes <- c("5/5","3/5","4/5","5/5","4/5")
+```
+
+`@solution`
+```{r}
+
+```
+
+`@sct`
+```{r}
+
 ```

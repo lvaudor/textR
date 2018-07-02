@@ -19,18 +19,16 @@ skills: 1
 
 `@instructions`
 
-Ici, vous trouverez les **instructions** pour réaliser les exercices.
+Ici, vous trouverez les **instructions** pour réaliser les exercices. Ici, imaginons que le but de l'exercice soit d'assigner la valeur 33 à l'objet `a`.
 
-En face, vous avez **en haut à droite** un éditeur, et en **bas à gauche** une **console R**. Vous pouvez utiliser cette console pour tester votre code... L'environnement peut déjà contenir un certain nombre d'objets (des jeux de données par exemple).
+En face, vous avez:
+
+- **en haut à droite** un éditeur, et 
+- en **bas à gauche** une **console R**. L'environnement peut déjà contenir un certain nombre d'objets (des jeux de données par exemple).
 
 Une fois que vous avez **complété** et **testé** les lignes de commandes, et que vous pensez avoir la solution de l'exercice, vous pouvez **soumettre votre réponse** en appuyant sur le bouton "Submit". Un certain nombre de tests sont alors exécutés automatiquement pour déterminer si vous avez bien réussi l'exercice.
 
-Si vous ne parvenez pas à résoudre l'exercice, vous pouvez demander un indice (bouton **hint**, à gauche).
-
-Si vous avez effacé certaines portions du code fourni au début et que vous estimez que c'était une erreur, vous pouvez appuyer sur le bouton "flèche en rond" (**reset sample code**).
-
-Ici, imaginons que le but de l'exercice soit d'assigner la valeur 33 à l'objet `a`.
-
+Si vous ne parvenez pas à résoudre l'exercice, vous pouvez demander un indice (bouton **Take Hint**, ci-dessous), puis demander la solution (**Show Answer**) si l'indice n'est pas suffisant pour vous débloquer...
 
 `@hint`
 Avez-vous bien changé ___ en '33'?
@@ -45,16 +43,18 @@ Avez-vous bien changé ___ en '33'?
 
 # Dans la plupart des exercices quelques lignes de commandes seront fournies, et ce sera à vous de les compléter en fonction des instructions.
 
-a <-___
+a <- ___
 
 
 # Les évaluations d'exercice consistent parfois à vérifier que la valeur de certains objets que vous avez créés correspond à ce qu'on attend...
 # Essayez donc de ne pas changer leur nom au risque que la validation de votre exercice échoue...
+
+# Si vous avez effacé certaines portions du code fourni au début et que vous estimez que c'était une erreur, vous pouvez appuyer sur le bouton "flèche en rond" (**reset sample code**).
 ```
 
 `@solution`
 ```{r}
-a<-33
+a <- 33
 ```
 
 `@sct`
@@ -86,7 +86,7 @@ Nous allons pour ce faire utiliser des fonctions du package `rvest`.
 `@instructions`
 - **lire la page** dans R
 - **sélectionner l'élément** correspondant au titre de la recette
-- **extraire le contenu** de cet élément
+- **extraire le contenu textuel** de cet élément
  
 `@hint`
 - l'élément correspondant au titre de la recette est de classe "main-title"
@@ -179,6 +179,7 @@ Les noms des ingrédients sont renseignés par les éléments de classe "ingredi
 
 `@pre_exercise_code`
 ```{r}
+library(rvest)
 html <- read_html("http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx")
 ```
 
@@ -210,7 +211,7 @@ ingredients <- html %>%
 ```{r}
 ex() %>% check_error()
 
-ex() %>% check_library(rvest)
+ex() %>% check_library("rvest")
 
 ex() %>% check_function("html_nodes",index=1) %>% check_arg("x") %>% check_equal()
 ex() %>% check_object("quantites") %>% check_equal()
@@ -308,7 +309,6 @@ Avez-vous bien indiqué le nom de la liste et le nom de la fonction aux bons end
 
 `@pre_exercise_code`
 ```{r}
-
 library(rvest)
 library(dplyr)
 urls <- list("http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx",
@@ -370,8 +370,8 @@ ex() %>% check_object("recup_ingredients") %>% check_equal()
 
 ex() %>% check_object("tibs") %>% check_equal()
 ex() %>% check_function("map") %>% {
-check_args(.,".x")
-check_args(.,".f")
+check_arg(.,".x")
+check_arg(.,".f")
 }
 
 ex() %>% check_function("bind_rows") 

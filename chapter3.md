@@ -64,9 +64,9 @@ ex() %>% check_error()
 ex() %>% check_library("dplyr")
 ex() %>% check_library("tidytext")
 ex() %>% check_function("unnest_tokens") %>% {
-check_arg("tbl") %>% check_equal()
-check_arg("output") %>% check_equal()
-check_arg("input") %>% check_equal()
+check_arg(.,"tbl") %>% check_equal()
+check_arg(.,"output") %>% check_equal()
+check_arg(.,"input") %>% check_equal()
 }
 ex() %>% check_object("tib_mots") %>% check_equal()
 ```
@@ -81,7 +81,6 @@ lang: r
 xp: 100
 skills: 1
 ```
-
 
 `@instructions`
 
@@ -136,6 +135,7 @@ check_arg("x") %>% check_equal()
 check_arg("y") %>% check_equal()
 }
 test_object("tib_comments_mainwords")
+success_msg("Super! On va maintenant ce concentrer sur ce tableau `tib_mots_nonvides` pour la suite des exercices...")
 ```
 
 
@@ -267,7 +267,7 @@ tib_polarites  %>%
 ```{r}
 ex() %>% check_error()
 
-ex() %>% check_libray("proustr")
+ex() %>% check_library("proustr")
 ex() %>% check_library("dplyr")
 
 ex() %>% check_object("scores") %>% check_equal()
