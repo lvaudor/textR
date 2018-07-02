@@ -64,7 +64,7 @@ check_arg(.,"string") %>% check_equal()
 check_arg(.,"pattern") %>% check_equal()
 check_arg(.,"replacement") %>% check_equal()
 }
-sucess_msg("Bien joué! vous avez remplacé un pattern 'fixe' par un autre... Voyons maintenant comment faire en spécifiant un pattern par une expression régulière...")
+sucess_msg("Bien joué! vous avez remplacé un pattern \'fixe\' par un autre... Voyons maintenant comment faire en spécifiant un pattern par une expression régulière...")
 ```
 
 
@@ -178,6 +178,7 @@ ex() %>% check_error()
 ex() %>% check_library("stringr")
 ex() %>% check_object("ingredients") %>% check_equal()
 ex() %>% check_object("match2") %>% check_equal()
+success_msg("C'est bien! Vous avez su vous inspirer d'une expression régulière pour en créer une autre...")
 ```
 
 ---
@@ -246,4 +247,5 @@ ex() %>% check_object("quantifies") %>% check_equal()
 ex() %>% check_function("str_subset")
 ex() %>% check_object("quantites") %>% check_equal()
 ex() %>% check_function("str_extract")
+success_msg("Yep!! Cette fois-ci vous l'avez fait tout seul!")
 ```
