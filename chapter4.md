@@ -14,12 +14,15 @@ xp: 100
 skills: 1
 ```
 
+On va maintenant réaliser un nuage de mots à partir de la table `tib_mots_nonvides` (déjà dans l'environnement).
+
 
 `@instructions`
 
-On va maintenant réaliser un nuage de mots à partir de la table `tib_mots_nonvides`. Pour ce faire il nous faut calculer la fréquence d'occurrence des mots.
+Calculez la **fréquence d'occurrence** des mots et **filtrez** pour ne garder que les mots avec une fréquence **supérieure ou égale à 10**.
 
 `@hint`
+Avez-vous bien réussi à calculer `tib_mots_frequence` et à passer les bons arguments à la fonction `wordcloud()`?
 
 `@pre_exercise_code`
 ```{r}
@@ -39,12 +42,12 @@ tib_mots_nonvides <- anti_join(tib_mots,
 ```{r}
 tib_mots_frequence=tib_mots_nonvides %>% 
   group_by(word) %>% 
-  summarise(freq=n())%>% 
-  filter(freq>=10)
+  summarise(freq=___)%>% 
+  filter(___)
 
 library(wordcloud)  
-wordcloud(tib_mots_frequence$word,
-          tib_mots_frequence$freq)
+wordcloud(___,
+          ___)
 ```
 
 `@solution`
