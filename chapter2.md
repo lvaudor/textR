@@ -64,7 +64,7 @@ check_arg(.,"string") %>% check_equal()
 check_arg(.,"pattern") %>% check_equal()
 check_arg(.,"replacement") %>% check_equal()
 }
-sucess_msg("Bien joué! vous avez remplacé un pattern \'fixe\' par un autre... Voyons maintenant comment faire en spécifiant un pattern par une expression régulière...")
+sucess_msg("Bien joué! vous avez remplacé un pattern fixe par un autre... Voyons maintenant comment faire en spécifiant un pattern par une expression régulière...")
 ```
 
 

@@ -69,7 +69,7 @@ check_arg(.,"output") %>% check_equal()
 check_arg(.,"input") %>% check_equal()
 }
 ex() %>% check_object("tib_mots") %>% check_equal()
-success_msg("Yes! La fonction `unnest_tokens()` nous mâche bien le travail pour la suite...")
+success_msg("Yes! La fonction unnest_tokens() nous mâche bien le travail pour la suite...")
 ```
 
 ---
@@ -92,6 +92,7 @@ On charge la librairie `proustr`: examinez les mots-outils listés par la foncti
 Complétez l'appel à `anti_join()` pour écarter de `tib_comments_words` les mots présents dans le jeu de données renvoyé par `proust_stopwords()`  
 
 `@hint`
+Il s'agit ici de faire une jointure "anti": tous les mots de `tib_mots` **sauf** ceux qui apparaissent dans `proust_stopwords()`!
 
 `@pre_exercise_code`
 ```{r}
