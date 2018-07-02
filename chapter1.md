@@ -6,8 +6,6 @@ description: Ce chapitre vous montre comment scraper les informations affichées
 ---
 ## Un exo pour comprendre les exos Datacamp
 
-Cet exercice sert purement et simplement à vous montrer comment fonctionne la plateforme Datacamp... 
-
 ```yaml
 type: NormalExercise
 key: cad10d2f39
@@ -16,6 +14,7 @@ xp: 100
 skills: 1
 ```
 
+Cet exercice sert purement et simplement à vous montrer comment fonctionne la plateforme Datacamp... 
 
 `@instructions`
 
@@ -25,8 +24,6 @@ En face, vous avez:
 
 - **en haut à droite** un éditeur, et 
 - en **bas à gauche** une **console R**. L'environnement peut déjà contenir un certain nombre d'objets (des jeux de données par exemple).
-
-Une fois que vous avez **complété** et **testé** les lignes de commandes, et que vous pensez avoir la solution de l'exercice, vous pouvez **soumettre votre réponse** en appuyant sur le bouton "Submit". Un certain nombre de tests sont alors exécutés automatiquement pour déterminer si vous avez bien réussi l'exercice.
 
 Si vous ne parvenez pas à résoudre l'exercice, vous pouvez demander un indice (bouton **Take Hint**, ci-dessous), puis demander la solution (**Show Answer**) si l'indice n'est pas suffisant pour vous débloquer...
 
@@ -50,6 +47,10 @@ a <- ___
 # Essayez donc de ne pas changer leur nom au risque que la validation de votre exercice échoue...
 
 # Si vous avez effacé certaines portions du code fourni au début et que vous estimez que c'était une erreur, vous pouvez appuyer sur le bouton "flèche en rond" (**reset sample code**).
+
+
+#Une fois que vous avez complété et testé les lignes de commandes, et que vous pensez avoir la solution de l'exercice, vous pouvez **soumettre votre réponse** en appuyant sur le bouton "Submit". Un certain nombre de tests sont alors exécutés automatiquement pour déterminer si vous avez bien réussi l'exercice.
+
 ```
 
 `@solution`
@@ -237,22 +238,17 @@ Examinez le code suivant:
 ```{r}
 library(rvest)
 library(dplyr)
-
 recup_ingredients <- function(url){
     html <- read_html(url)
-    # Recupere titre
     titre <- html %>%
       html_nodes(".main-title") %>% 
       html_text()
-    # Recupere quantites
     quantites <- html %>%
       html_nodes(".recipe-ingredient-qt")  %>%
       html_text()
-    # Recupere ingredients
     ingredients <- html %>%
       html_nodes(".ingredient") %>% 
       html_text()
-    # Rassemble le tout dans une tibble 
     tib <- bind_cols(url=rep(url,length(ingredients)),
                    titre=rep(titre, length(ingredients)),
                    quantites=quantites,
@@ -265,10 +261,10 @@ Que fait la fonction `recup_ingredients()`?
 
 
 `@possible_answers`
-- Elle prend en entrée l'**url** d'une recette Marmiton et renvoie en sortie une **liste** de la liste des ingrédients et de la liste des quantités.
-- Elle prend en entrée l'**url** d'une recette Marmiton et renvoie en sortie une **table** renseignant les ingrédients et leurs quantités.
-- Elle prend en entrée l'**url** d'une recette Marmiton et renvoie en sortie les **éléments html** ("nodes") relatifs aux ingrédients.
-- Elle prend en entrée le **nom** d'une recette Marmiton et renvoie en sortie une **table** renseignant les ingrédients et leurs quantités
+- Elle prend en entrée l'**url** d'une recette Marmiton et renvoie une **liste** de la liste des ingrédients et de la liste des quantités.
+- Elle prend en entrée l'**url** d'une recette Marmiton et renvoie une **table** renseignant les ingrédients et leurs quantités.
+- Elle prend en entrée l'**url** d'une recette Marmiton et renvoie les **éléments html** ("nodes") relatifs aux ingrédients.
+- Elle prend en entrée le **nom** d'une recette Marmiton et renvoie une **table** renseignant les ingrédients et leurs quantités
 
 `@hint`
 Le nom de l'input (`url`) et de l'output (`tib`) sont des indices, car la fonction est vraiment très bien écrite!...

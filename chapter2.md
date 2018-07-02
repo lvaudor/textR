@@ -13,12 +13,14 @@ xp: 25
 skills: 1
 ```
 
+Examinez le vecteur `ingredients`, ci-contre.
 
 `@instructions`
 
 Transformez le vecteur `ingredients` en `ingredients_corr`, en **remplaçant** "cuillère à soupe" par "CàS" et en utilisant pour ce faire une des fonctions du package `stringr`.
 
 `@hint`
+Avez-vous identifié la fonction de `stringr` qui nous intéresse ici et bien spécifié ses arguments dans le bon ordre?
 
 `@pre_exercise_code`
 ```{r}
@@ -62,7 +64,7 @@ check_arg(.,"string") %>% check_equal()
 check_arg(.,"pattern") %>% check_equal()
 check_arg(.,"replacement") %>% check_equal()
 }
-
+sucess_msg("Bien joué! vous avez remplacé un pattern 'fixe' par un autre... Voyons maintenant comment faire en spécifiant un pattern par une expression régulière...")
 ```
 
 
@@ -189,10 +191,12 @@ xp: 100
 skills: 1
 ```
 
+Examinez le vecteur `ingredients` ci-contre.
 
 `@instructions`
 
-Créez un vecteur `quantifies` qui ne comprend que les éléments de `ingredients` qui **contiennent des caractères numériques**.
+- Créez un vecteur `quantifies` qui ne comprend que les éléments de `ingredients` qui **contiennent des caractères numériques**.
+- Créez un vecteur `quantites` correspondant à l'**extraction des quantités** des ingrédients (NA,2,33,300,NA).
 
 
 `@hint`
@@ -211,7 +215,10 @@ ingredients <- c("du sucre",
                  "une boîte de poires au sirop de 300g",
                  "des noisettes grillées")
                 
-quantifies=str_subset(ingredients,___)
+quantifies <- str_subset(ingredients,___)
+
+quantites <- str____(ingredients,___)
+
 ```
 
 `@solution`
@@ -224,12 +231,19 @@ ingredients <- c("du sucre",
                  "une boîte de poires au sirop de 300g",
                  "des noisettes grillées")
                 
-quantifies=str_subset(ingredients,"\\d")
+quantifies <- str_subset(ingredients,"\\d")
+
+quantites <- str_extract(ingredients,"\\d+")
 ```
 
 `@sct`
 ```{r}
 ex() %>% check_error()
+
 ex() %>% check_library("stringr")
+
 ex() %>% check_object("quantifies") %>% check_equal()
+ex() %>% check_function("str_subset")
+ex() %>% check_object("quantites") %>% check_equal()
+ex() %>% check_function("str_extract")
 ```
