@@ -1,5 +1,6 @@
 ---
 title       : Manipuler des chaînes de caractère
+title_meta: Chapter 2
 description : Ce chapitre vous montre comment manipuler, transformer, nettoyer des chaînes de caractère à l'aide des fonctions du package `stringr`.Diapos ici <a class="white-link" href="http://perso.ens-lyon.fr/lise.vaudor/tutos/tuto_texte/tuto_texte_part2.html"  target="_blank">.
 ---
 
@@ -64,7 +65,7 @@ check_arg(.,"string") %>% check_equal()
 check_arg(.,"pattern") %>% check_equal()
 check_arg(.,"replacement") %>% check_equal()
 }
-sucess_msg("Bien joué! vous avez remplacé un pattern fixe par un autre... Voyons maintenant comment faire en spécifiant un pattern par une expression régulière...")
+success_msg("Bien joué! vous avez remplacé un pattern fixe par un autre... Voyons maintenant comment faire en spécifiant un pattern par une expression régulière...")
 ```
 
 

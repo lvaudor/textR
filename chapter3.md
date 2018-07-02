@@ -1,5 +1,6 @@
 ---
 title       : Manipuler du texte en langage naturel
+title_meta: Chapter 3
 description : Ce chapitre vous montre comment à partir de texte en langage naturel (ici en français) mettre en forme des tables clean et tidy vous permettant quelques analyses lexicales. Diapos ici <a class="white-link" href="http://perso.ens-lyon.fr/lise.vaudor/tutos/tuto_texte/tuto_texte_part3.html"  target="_blank">.
 
 

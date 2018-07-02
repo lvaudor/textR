@@ -1,5 +1,6 @@
 ---
 title       : Visualisation
+title_meta: Chapter 4
 description : Ce chapitre vous montre comment réaliser quelques graphiques à partir de données lexicales.Diapos ici <a class="white-link" href="http://perso.ens-lyon.fr/lise.vaudor/tutos/tuto_texte/tuto_texte_part4.html"  target="_blank">.
 
 ---
@@ -150,4 +151,66 @@ check_arg(.,"mapping") %>% check_equal()
 ex() %>% check_function("coord_flip")
 ex() %>% check_function("geom_bar") %>% check_arg("stat") %>% check_equal()
 success_msg("Bravo! Voilà un graphique simple mais efficace pour représenter les fréquences lexicales.")
+```
+
+
+---
+## Co-occurrences
+
+```yaml
+type: NormalExercise
+key: f468d79672
+lang: r
+xp: 100
+skills: 1
+```
+
+
+`@instructions`
+
+`@hint`
+
+`@pre_exercise_code`
+```{r}
+tib_commentaires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_commentaires.csv")
+
+library(tidytext)  
+tib_mots <- unnest_tokens(tib_commentaires,
+                          output="word",
+                          input="texte")
+library(proustr)
+library(dplyr)
+tib_mots_nonvides <- anti_join(tib_mots,
+                               proust_stopwords())    
+```
+
+`@sample_code`
+```{r}
+library(widyr)
+
+tib_mots_filtree=tib_mots %>% 
+  group_by(word) %>%
+  mutate(n=n()) %>% 
+  filter(n>50) %>% 
+  ungroup() 
+
+mots_paires=tib_mots_filtree %>%
+  pairwise_count(lemme,recette,sort=TRUE) 
+
+mots_cors= tib_mots_filtree %>% 
+  pairwise_cor(lemme,recette,sort=TRUE)
+
+mots_paires=left_join(mots_paires,
+                      mots_cors,
+                      by=c("item1","item2"))
+```
+
+`@solution`
+```{r}
+
+```
+
+`@sct`
+```{r}
+
 ```
