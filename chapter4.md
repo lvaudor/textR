@@ -1,6 +1,6 @@
 ---
 title       : Visualisation
-description : Ce chapitre vous montre comment réaliser quelques graphiques à partir de données lexicales.
+description : Ce chapitre vous montre comment réaliser quelques graphiques à partir de données lexicales.Diapos ici <a class="white-link" href="http://perso.ens-lyon.fr/lise.vaudor/tutos/tuto_texte/tuto_texte_part4.html"  target="_blank">.
 
 ---
 
@@ -17,27 +17,27 @@ skills: 1
 
 `@instructions`
 
-On va maintenant 
+On va maintenant réaliser un nuage de mots à partir de la table `tib_mots_nonvides`. Pour ce faire il nous faut calculer la fréquence d'occurrence des mots.
 
 `@hint`
 
 `@pre_exercise_code`
 ```{r}
-tib_comments <- readr::read_csv("https://raw.githubusercontent.com/lvaudor/textR/c291e5cd0c0656ea7e2b8bf6c0485ba80b69b0d7/datasets/tib_comments.csv")
+tib_commentaires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_commentaires.csv")
 
 library(tidytext)  
-tib_comments_words <- unnest_tokens(tib_comments,
-                                    output="word",
-                                    input="commentext")
+tib_mots <- unnest_tokens(tib_commentaires,
+                          output="word",
+                          input="texte")
 library(proustr)
 library(dplyr)
-tib_comments_mainwords <- filter(tib_comments_words,
-                                 !(word %in% proust_stopwords()$word))  
+tib_mots_nonvides <- anti_join(tib_mots,
+                               proust_stopwords())       
 ```
 
 `@sample_code`
 ```{r}
-tib_mots_frequence=tib_comments_mainwords %>% 
+tib_mots_frequence=tib_mots_nonvides %>% 
   group_by(word) %>% 
   summarise(freq=n())%>% 
   filter(freq>=10)
@@ -49,7 +49,7 @@ wordcloud(tib_mots_frequence$word,
 
 `@solution`
 ```{r}
-tib_mots_frequence=tib_comments_mainwords %>% 
+tib_mots_frequence=tib_mots_nonvides %>% 
   group_by(word) %>% 
   summarise(freq=n())%>% 
   filter(freq>=10)
@@ -61,7 +61,12 @@ wordcloud(tib_mots_frequence$word,
 
 `@sct`
 ```{r}
-test_error()
+ex() %>% check_error()
+ex() %>% check_library("wordcloud")
+ex() %>% check_function("wordcloud") %>% {
+check_arg("freq") %>% check_equal()
+check_arg("word") %>% check_equal()
+}
 ```
 
 
@@ -84,38 +89,47 @@ skills: 1
 
 `@pre_exercise_code`
 ```{r}
+tib_commentaires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_commentaires.csv")
 
 library(tidytext)  
-tib_comments_words <- unnest_tokens(tib_comments,
-                                    output="word",
-                                    input="commentext")
+tib_mots <- unnest_tokens(tib_commentaires,
+                          output="word",
+                          input="texte")
 library(proustr)
 library(dplyr)
-tib_comments_mainwords <- filter(tib_comments_words,
-                                 !(word %in% proust_stopwords()$word))  
+tib_mots_nonvides <- anti_join(tib_mots,
+                               proust_stopwords())    
 ```
 
 `@sample_code`
 ```{r}
-tib_comments %>%
+tib_commentaires %>%
   summarise(mnote=mean(note,na.rm=TRUE)) %>% pull(mnote)
 
-tib_mots_frequence=tib_comments_mainwords %>% 
+tib_mots_frequence=tib_mots_nonvides %>% 
   mutate(bonne_note=note>mean(note,na.rm=TRUE))
   group_by(word) %>% 
   summarise(freq=n())%>% 
   filter(freq>=10)
   
 library(ggplot2)
-
 ```
 
 `@solution`
 ```{r}
+tib_commentaires %>%
+  summarise(mnote=mean(note,na.rm=TRUE)) %>% pull(mnote)
 
+tib_mots_frequence=tib_mots_nonvides %>% 
+  mutate(bonne_note=note>mean(note,na.rm=TRUE))
+  group_by(word) %>% 
+  summarise(freq=n())%>% 
+  filter(freq>=10)
+  
+library(ggplot2)
 ```
 
 `@sct`
 ```{r}
-
+ex() %>% check_error()
 ```

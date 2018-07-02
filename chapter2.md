@@ -1,6 +1,6 @@
 ---
 title       : Manipuler des chaînes de caractère
-description : Ce chapitre vous montre comment manipuler, transformer, nettoyer des chaînes de caractère à l'aide des fonctions du package `stringr`.
+description : Ce chapitre vous montre comment manipuler, transformer, nettoyer des chaînes de caractère à l'aide des fonctions du package `stringr`.Diapos ici <a class="white-link" href="http://perso.ens-lyon.fr/lise.vaudor/tutos/tuto_texte/tuto_texte_part2.html"  target="_blank">.
 ---
 
 ## Remplacer un pattern par un autre
@@ -53,9 +53,16 @@ ingredients_corr <- str_replace(ingredients, "cuillère à soupe","CàS")
 
 `@sct`
 ```{r}
-test_error()
-test_object("ingredients")
-test_object("ingredients_corr")
+ex() %>% check_error()
+ex() %>% check_library("stringr")
+ex() %>% check_object("ingredients") 
+ex() %>% check_object("ingredients_corr")
+ex() %>% check_function("str_replace") %>% {
+check_arg("string") %>% check_equal()
+check_arg("pattern") %>% check_equal()
+check_arg("replacement") %>% check_equal()
+}
+
 ```
 
 
@@ -164,8 +171,8 @@ match2
 
 `@sct`
 ```{r}
-test_error()
-test_object("ingredients")
-test_object("match1")
-test_object("match2")
+ex() %>% check_error()
+ex() %>% check_library("stringr")
+ex() %>% check_object("ingredients") %>% check_equal()
+ex() %>% check_object("match2") %>% check_equal()
 ```

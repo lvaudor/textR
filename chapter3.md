@@ -1,6 +1,6 @@
 ---
 title       : Manipuler du texte en langage naturel
-description : Ce chapitre vous montre comment à partir de texte en langage naturel (ici en français) mettre en forme des tables clean et tidy vous permettant quelques analyses lexicales.
+description : Ce chapitre vous montre comment à partir de texte en langage naturel (ici en français) mettre en forme des tables clean et tidy vous permettant quelques analyses lexicales. Diapos ici <a class="white-link" href="http://perso.ens-lyon.fr/lise.vaudor/tutos/tuto_texte/tuto_texte_part3.html"  target="_blank">.
 
 
 ---
@@ -18,7 +18,7 @@ skills: 1
 
 Examinez les premiers commentaires de la table `tib_comments` (déjà présente dans l'environnement). Dans cette table, **une ligne** correspond à **un commentaire**.
 
-Tokenizez les commentaires pour obtenir la table `tib_comments_words`, pour laquelle **une ligne** correspond à **un mot**.
+Tokenisez les commentaires pour obtenir la table `tib_comments_words`, pour laquelle **une ligne** correspond à **un mot**.
 
 
 `@hint`
@@ -29,39 +29,46 @@ Tokenizez les commentaires pour obtenir la table `tib_comments_words`, pour laqu
 
 `@pre_exercise_code`
 ```{r}
-tib_comments=readr::read_csv("https://raw.githubusercontent.com/lvaudor/textR/c291e5cd0c0656ea7e2b8bf6c0485ba80b69b0d7/datasets/tib_comments.csv")
+tib_commentaires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_commentaires.csv")
 ```
 
 `@sample_code`
 ```{r}
 library(dplyr)
-tib_comments %>%
-    select(title, commentext) %>%
+tib_commentaires %>%
+    select(title, texte) %>%
     head()
 
 library(tidytext)                              
-tib_comments_words <- unnest_tokens(tib_comments,
-                                    output=___,
-                                    input=___)
+tib_mots <- unnest_tokens(tib_commentaires,
+                          output=___,
+                          input=___)
 ```
 
 `@solution`
 ```{r}
 library(dplyr)
-tib_comments %>%
-    select(commentext) %>%
+tib_commentaires %>%
+    select(texte) %>%
     head()
 
 library(tidytext)  
-tib_comments_words <- unnest_tokens(tib_comments,
-                                    output="word",
-                                    input="commentext")
+tib_mots <- unnest_tokens(tib_commentaires,
+                          output="word",
+                          input="texte")
 ```
 
 `@sct`
 ```{r}
-test_error()
-test_object("tib_comments_words")
+ex() %>% check_error()
+ex() %>% check_library("dplyr")
+ex() %>% check_library("tidytext")
+ex() %>% check_function("unnest_tokens") %>% {
+check_arg("tbl") %>% check_equal()
+check_arg("output") %>% check_equal()
+check_arg("input") %>% check_equal()
+}
+ex() %>% check_object("tib_mots") %>% check_equal()
 ```
 
 ---
@@ -88,12 +95,11 @@ Complétez l'appel à `anti_join()` pour écarter de `tib_comments_words` les mo
 
 `@pre_exercise_code`
 ```{r}
-tib_comments <- readr::read_csv("https://raw.githubusercontent.com/lvaudor/textR/c291e5cd0c0656ea7e2b8bf6c0485ba80b69b0d7/datasets/tib_comments.csv")
-
+tib_commentaires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_commentaires.csv")
 library(tidytext)  
-tib_comments_words <- unnest_tokens(tib_comments,
-                                    output="word",
-                                    input="commentext")
+tib_mots <- unnest_tokens(tib_commentaires,
+                          output="word",
+                          input="texte")
 ```
 
 `@sample_code`
@@ -102,8 +108,8 @@ library(proustr)
 proust_stopwords()
 
 library(dplyr)
-tib_comments_mainwords <- anti_join(tib_comments_words,
-                                    ___)
+tib_mots_nonvides <- ____join(tib_mots,
+                               ___)
 ```
 
 `@solution`
@@ -112,13 +118,23 @@ library(proustr)
 proust_stopwords()
 
 library(dplyr)
-tib_comments_mainwords <- anti_join(tib_comments_words,
-                                    proust_stopwords())
+tib_mots_nonvides <- anti_join(tib_mots,
+                               proust_stopwords())
 ```
 
 `@sct`
 ```{r}
-test_error()
+ex() %>% check_error()
+
+ex() %>% check_library("proustr")
+ex() %>% check_library("dplyr")
+
+ex() %>% check_object("tib_mots") %>% check_equal()
+ex() %>% check_object("tib_mots_nonvides") %>% check_equal()
+ex() %>% check_function("anti_join") %>% {
+check_arg("x") %>% check_equal()
+check_arg("y") %>% check_equal()
+}
 test_object("tib_comments_mainwords")
 ```
 
@@ -145,35 +161,40 @@ Avez-vous trouvé de quelle fonction il s'agissait? il s'agit de `pr_stem_words(
 
 `@pre_exercise_code`
 ```{r}
-tib_comments <- readr::read_csv("https://raw.githubusercontent.com/lvaudor/textR/c291e5cd0c0656ea7e2b8bf6c0485ba80b69b0d7/datasets/tib_comments.csv")
-
+tib_commentaires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_commentaires.csv")
 library(tidytext)  
-tib_comments_words <- unnest_tokens(tib_comments,
-                                    output="word",
-                                    input="commentext")
+tib_mots <- unnest_tokens(tib_commentaires,
+                          output="word",
+                          input="texte")
 library(proustr)
 library(dplyr)
-tib_comments_mainwords <- anti_join(tib_comments_words,
-                                    proust_stopwords())                                     
+tib_mots_nonvides <- anti_join(tib_mots,
+                               proust_stopwords())                                     
 ```
 
 `@sample_code`
 ```{r}
 library(proustr)
-tib_comments_mainwords_stemmed <- ___
+tib_racines <- ___
 ```
 
 `@solution`
 ```{r}
 library(proustr)
-tib_comments_mainwords_stemmed <-  pr_stem_words(tib_comments_mainwords,
-                                                 word)
+tib_racines <-  pr_stem_words(tib_mots_nonvides,
+                              word)
 ```
 
 `@sct`
 ```{r}
-test_error()
-test_object(tib_comments_mainwords_stemmed)
+ex() %>% check_error()
+ex() %>% check_library("proustr")
+ex() %>% check_object("tib_racines") %>% check_equal()
+ex() %>% check_function("pr_stem_words") %>% {
+check_arg("df") %>% check_equal()
+check_arg("col") %>% check_equal()
+}
+success_msg("Bien joué! Vous pouvez constater que la racinisation est très simple à mettre en oeuvre grâce à la fonction `pr_stem_words()`")
 ```
 
 ---
@@ -198,18 +219,16 @@ skills: 1
 
 `@pre_exercise_code`
 ```{r}
-tib_comments <- readr::read_csv("https://raw.githubusercontent.com/lvaudor/textR/c291e5cd0c0656ea7e2b8bf6c0485ba80b69b0d7/datasets/tib_comments.csv")
+tib_commentaires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_commentaires.csv")
 
 library(tidytext)  
-tib_comments_words <- unnest_tokens(tib_comments,
-                                    output="word",
-                                    input="commentext")
+tib_mots <- unnest_tokens(tib_commentaires,
+                          output="word",
+                          input="texte")
 library(proustr)
-tib_comments_mainwords <- filter(tib_comments_words,
-                                 !(word %in% proust_stopwords()$word))  
-                                 
-tib_comments_mainwords_stemmed <- pr_stem_words(tib_comments_mainwords,
-                                             word)
+library(dplyr)
+tib_mots_nonvides <- anti_join(tib_mots,
+                               proust_stopwords())       
 ```
 
 `@sample_code`
@@ -218,7 +237,7 @@ library(proustr)
 scores <- ___
 sentiments <- ___
    
-tib_comments_polarity <- tib_comments_mainwords %>%
+tib_polarites <- tib_mots_nonvides %>%
     left_join(___) 
 
 library(dplyr)    
@@ -234,11 +253,11 @@ library(proustr)
 scores <- proust_sentiments(type="score")
 polarites <- proust_sentiments()
 
-tib_comments_polarity <- tib_comments_mainwords %>%
+tib_polarites <- tib_mots_nonvides %>%
     left_join(polarites) 
 
 library(dplyr)
-tib_comments_polarity  %>%
+tib_polarites  %>%
   group_by(word,polarity) %>% 
   summarise(n=n()) %>% 
   arrange(desc(n))
@@ -246,6 +265,11 @@ tib_comments_polarity  %>%
 
 `@sct`
 ```{r}
-test_error()
+ex() %>% check_error()
+ex() %>% check_libray("proustr")
+ex() %>% check_library("dplyr")
+ex() %>% check_object("scores") %>% check_equal()
+ex() %>% check_object("polarites") %>% check_equal()
+ex() %>% check_object("tib_polarites") %>% check_equal()
 test_object(tib_comments_polarity)
 ```

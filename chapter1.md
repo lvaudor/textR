@@ -1,7 +1,7 @@
 ---
 title: Scraper des données du web
 title_meta: Chapter 1
-description: Ce chapitre vous montre comment scraper les informations affichées dans des pages html à l' aide des fonctions du package rvest.
+description: Ce chapitre vous montre comment scraper les informations affichées dans des pages html à l' aide des fonctions du package rvest. Diapos ici <a class="white-link" href="http://perso.ens-lyon.fr/lise.vaudor/tutos/tuto_texte/tuto_texte_part1.html"  target="_blank">.
 
 ---
 ## Un exo pour comprendre les exos Datacamp
@@ -59,10 +59,9 @@ a<-33
 
 `@sct`
 ```{r}
-test_error()
-test_object("a")
+ex() %>% check_error()
+ex() %>% check_object("a") %>% check_equal()
 success_msg("Parfait! Vous allez pouvoir vous lancer dans les 'vrais' exercices...")
-
 ```
 
 
@@ -139,11 +138,18 @@ titre <- element_titre %>%
 `@sct`
 
 ```{r}
-test_error()
-test_object("url")
-test_object("html")
-test_object("element_titre")
-test_object("titre")
+ex() %>% check_error()
+ex() %>% check_object("url")
+
+ex() %>% check_object("html")
+ex() %>% check_function("read_html") %>% check_arg("x") %>% check_equal()
+
+ex() %>% check_object("element_titre") %>% check_equal()
+ex() %>% check_function("html_nodes") %>% check_arg("css") %>% check_equal()
+
+ex() %>% check_object("titre") %>% check_equal()
+ex() %>% check_function("html_text")
+
 success_msg("Bravo! A défaut de pouvoir lécher la casserole, vous pouvez scraper la recette!")
 ```
 
@@ -159,7 +165,7 @@ xp: 50
 skills: 1
 ```
 
-On repart de l'objet `html` de l'exercice précédent (même recette de bavarois, donc...). 
+On repart de l'objet `html` de l'exercice précédent (même recette de bavarois, donc...).  
 
 `@instructions`
 
@@ -173,12 +179,13 @@ Les noms des ingrédients sont renseignés par les éléments de classe "ingredi
 
 `@pre_exercise_code`
 ```{r}
-library(rvest)
 html <- read_html("http://www.marmiton.org/recettes/recette_bavarois-au-chocolat-blanc-et-aux-framboises_84502.aspx")
 ```
 
 `@sample_code`
 ```{r}
+library(rvest)
+
 ingredients <- html %>%
   html_nodes(___) %>% 
   html_text()
@@ -189,6 +196,8 @@ quantites <- html %>%
 
 `@solution`
 ```{r}
+library(rvest)
+
 quantites <- html %>%
   html_nodes(".recipe-ingredient-qt")  %>%
   html_text()
@@ -199,9 +208,16 @@ ingredients <- html %>%
 
 `@sct`
 ```{r}
-test_error()
-test_object("quantites")
-test_object("ingredients")
+ex() %>% check_error()
+
+ex() %>% check_library(rvest)
+
+ex() %>% check_function("html_nodes",index=1) %>% check_arg("x") %>% check_equal()
+ex() %>% check_object("quantites") %>% check_equal()
+
+ex() %>% check_function("html_nodes",index=2) %>% check_arg("x") %>% check_equal()
+ex() %>% check_object("ingredients") %>% check_equal()
+
 success_msg("Bien joué! Prenons maintenant notre nom de recette, nos ingrédients, et leurs quantités, et versons tout ça dans un moule rectangulaire")
 ```
 
@@ -347,7 +363,17 @@ tib_ingredients <- bind_rows(tibs)
 
 `@sct`
 ```{r}
-test_error()
+ex() %>% check_error()
+
+ex() %>% check_object("urls") %>% check_equal()
+ex() %>% check_object("recup_ingredients") %>% check_equal()
+
+ex() %>% check_object("tibs") %>% check_equal()
+ex() %>% check_function("map") %>% check_args(".x",".f")
+
+ex() %>% check_function("bind_rows") 
+ex() %>% check_object("tib_ingredients") %>% check_equal()
+
 success_msg("Super! Vous savez maintenant itérer une fonction grâce aux fonctions de purrr... Trop fort, non?")
 ```
 
