@@ -64,8 +64,8 @@ wordcloud(tib_mots_frequence$word,
 ex() %>% check_error()
 ex() %>% check_library("wordcloud")
 ex() %>% check_function("wordcloud") %>% {
-check_arg("freq") %>% check_equal()
-check_arg("word") %>% check_equal()
+check_arg(.,"freq") %>% check_equal()
+check_arg(.,"word") %>% check_equal()
 }
 ```
 

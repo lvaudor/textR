@@ -369,7 +369,10 @@ ex() %>% check_object("urls") %>% check_equal()
 ex() %>% check_object("recup_ingredients") %>% check_equal()
 
 ex() %>% check_object("tibs") %>% check_equal()
-ex() %>% check_function("map") %>% check_args(".x",".f")
+ex() %>% check_function("map") %>% {
+check_args(.,".x")
+check_args(.,".f")
+}
 
 ex() %>% check_function("bind_rows") 
 ex() %>% check_object("tib_ingredients") %>% check_equal()

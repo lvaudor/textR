@@ -211,8 +211,8 @@ skills: 1
 
 `@instructions`
 
-- récupérez les tables `scores` et `sentiments` qui associent, respectivement, une **polarité** (positive ou négative) et un **sentiment** à un certain nombre de mots en français.
-- réalisez la jointure qui permet d'associer les mots issus des commentaires des recettes à une polarité positive ou négative (on repart de la table `tib_comments_mainwords`, déjà présente dans l'environnement).
+- créez les tables `scores` et `sentiments` qui associent, respectivement, une **polarité** (positive ou négative) et un **sentiment** à un certain nombre de mots en français.
+- réalisez la jointure qui permet d'associer les mots issus des commentaires des recettes à une polarité positive ou négative (on repart de la table `tib_mots_nonvides`, déjà présente dans l'environnement).
 
 
 `@hint`
@@ -266,10 +266,11 @@ tib_polarites  %>%
 `@sct`
 ```{r}
 ex() %>% check_error()
+
 ex() %>% check_libray("proustr")
 ex() %>% check_library("dplyr")
+
 ex() %>% check_object("scores") %>% check_equal()
 ex() %>% check_object("polarites") %>% check_equal()
 ex() %>% check_object("tib_polarites") %>% check_equal()
-test_object(tib_comments_polarity)
 ```

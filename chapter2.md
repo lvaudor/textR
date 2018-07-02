@@ -58,9 +58,9 @@ ex() %>% check_library("stringr")
 ex() %>% check_object("ingredients") 
 ex() %>% check_object("ingredients_corr")
 ex() %>% check_function("str_replace") %>% {
-check_arg("string") %>% check_equal()
-check_arg("pattern") %>% check_equal()
-check_arg("replacement") %>% check_equal()
+check_arg(.,"string") %>% check_equal()
+check_arg(.,"pattern") %>% check_equal()
+check_arg(.,"replacement") %>% check_equal()
 }
 
 ```
