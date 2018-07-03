@@ -224,11 +224,11 @@ tib_mots_nonvides=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tut
 library(proustr)
 scores <- ___
 sentiments <- ___
-   
+
+library(dplyr)    
 tib_polarites <- tib_mots_nonvides %>%
     left_join(___) 
 
-library(dplyr)    
 tib_polarites  %>%
   group_by(word,polarity) %>% 
   summarise(n=n()) %>% 
@@ -241,10 +241,10 @@ library(proustr)
 scores <- proust_sentiments(type="score")
 polarites <- proust_sentiments()
 
+library(dplyr)
 tib_polarites <- tib_mots_nonvides %>%
     left_join(polarites) 
 
-library(dplyr)
 tib_polarites  %>%
   group_by(word,polarity) %>% 
   summarise(n=n()) %>% 

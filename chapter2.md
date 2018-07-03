@@ -82,18 +82,14 @@ skills: 1
 
 Examinez cette expression régulière:
 
-```{r}
-"\\w?g"
-```
+\w?g
 
-`@instructions`
-
-Pour quels éléments le pattern sera-t-il détecté parmi les ingrédients suivants:
+Pour quels éléments le pattern serait-t-il détecté parmi les ingrédients suivants:
 
 - "kg de farine de blé",
 - "cuillère de sauce aigre-douce",
 - "dl de lait d'amande",
-- "g de chocolat amer")
+- "g de chocolat amer"
 
 `@possible_answers`
 - "kg de farine de blé",et "cuillère de sauce aigre-douce"
