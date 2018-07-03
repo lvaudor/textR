@@ -90,7 +90,7 @@ On va faire notre premier **nuage de mots**, en filtrant les données pour ne ga
 
 `@instructions`
 
-Créez un tableau qui résume la **fréquence d'occurrence** des lemmes et **filtrez** pour ne garder que les lemmes avec une fréquence **supérieure ou égale à 20**.
+Créez un tableau qui résume la **fréquence d'occurrence** des lemmes et **filtrez** pour ne garder que les lemmes avec une fréquence **supérieure ou égale à 50**.
 Réalisez le nuage des mots à l'aide du jeu de données résultant `tib_mots_frequence`.
 
 `@hint`
@@ -120,7 +120,7 @@ library(dplyr)
 tib_mots_frequence=tib_mots_nonvides %>% 
   group_by(lemme) %>% 
   summarise(freq=n())%>% 
-  filter(freq>=20)
+  filter(freq>=50)
 
 library(wordcloud)  
 wordcloud(tib_mots_frequence$lemme,
@@ -337,8 +337,8 @@ mots_paires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_text
 ```{r}
 library(dplyr)
 mots_paires_filtre=mots_paires %>%
-   filter(n>20,
-          correlation>0.3,
+   filter(___,
+          ___,
           item1!="recette" & item2!="recette")
 
 library(ggraph)
@@ -355,12 +355,12 @@ ggraph(__________,layout = "fr") +
 ```{r}
 library(dplyr)
 mots_paires_filtre=mots_paires %>%
-   filter(n>20,
-          correlation>0.3,
+   filter(n>=20,
+          correlation>=0.3,
           item1!="recette" & item2!="recette")
 
 library(ggraph)
-tib_graph <- ______(mots_paires_filtre)
+tib_graph <- graph_from_data_frame(mots_paires_filtre)
 
 ggraph(tib_graph, layout = "fr") +
    geom_edge_link() +

@@ -92,10 +92,10 @@ Pour quels éléments le pattern serait-t-il détecté parmi les ingrédients su
 - "g de chocolat amer"
 
 `@possible_answers`
-- "kg de farine de blé",et "cuillère de sauce aigre-douce"
-- "kg de farine de blé", "cuillère de sauce aigre-douce"," et "g de chocolat amer"
-- "kg de farine de blé et "g de chocolat amer
-- "g de chocolat amer"
+- pour "kg de farine de blé",et "cuillère de sauce aigre-douce"
+- pour "kg de farine de blé", "cuillère de sauce aigre-douce"," et "g de chocolat amer"
+- pour "kg de farine de blé et "g de chocolat amer
+- pour "g de chocolat amer"
 
 `@sct`
 ```{r}
@@ -104,79 +104,6 @@ msg2 <- "Oui! le 'g' peut être placé n'importe où, et être (ou non) précéd
 msg3 <- "Non... N'y a-t-il pas un autre 'g' quelque part qui pourrait correspondre?"
 msg4 <- "Non, le 'g' peut n'être précédé par rien, mais il peut aussi être précédé d'une lettre..."
 test_mc(correct=2, feedback_msgs = c(msg1, msg2, msg3, msg4))
-```
-
----
-
-
-## Décomposer une chaîne de caractère
-
-```yaml
-type: NormalExercise
-key: e183fa15f8
-lang: r
-xp: 100
-skills: 1
-```
-
-
-Examinez le code ci-contre. Le premier appel à `str_match()` isole l'unité de mesure -"g" ou "l" précédé ou non d'une autre lettre- du reste des chaînes de caractère.
-
-`@instructions`
-
-Complétez le deuxième appel pour aussi isoler les " de " ou " d'" dans les chaînes de caractère.
-
-`@hint`
-Avez-vous pensé aux espaces (un de part et d'autre du "de"), un avant le "d'", et à préceder l'apostrophe d'un "\" ?
-
-
-`@pre_exercise_code`
-```{r}
-
-```
-
-`@sample_code`
-
-```{r}
-library(stringr)
-
-ingredients <- c(" g de chocolat",
-                 " kg de farine", 
-                 " ml de lait",
-                 " dl d'huile",
-                 " g de café soluble",
-                 " l de lait")
-
-match1 <- str_match(ingredients,"(\\w?g|\\w?l)(.*)")
-match1
-match2 <- str_match(ingredients,"(\\w?g|\\w?l)(___)(.*)"
-match2
-```
-
-`@solution`
-```{r}
-library(stringr)
-
-ingredients <- c(" g de chocolat",
-                 " kg de farine", 
-                 " ml de lait",
-                 " dl d'huile",
-                 " g de café soluble",
-                 " l de lait")
-
-match1 <- str_match(ingredients,"(\\w?g|\\w?l)(.*)")
-match1
-match2 <- str_match(ingredients,"(\\w?g|\\w?l)( de | d\')(.*)")
-match2
-```
-
-`@sct`
-```{r}
-ex() %>% check_error()
-ex() %>% check_library("stringr")
-ex() %>% check_object("ingredients") %>% check_equal()
-ex() %>% check_object("match2") %>% check_equal()
-success_msg("C'est bien! Vous avez su vous inspirer d'une expression régulière pour en créer une autre...")
 ```
 
 ---
@@ -248,4 +175,75 @@ ex() %>% check_object("quantites") %>% check_equal()
 ex() %>% check_function("str_extract")
 success_msg("Yep!! Cette fois-ci vous l'avez fait tout seul!")
 ```
+---
+## Décomposer une chaîne de caractère
+
+```yaml
+type: NormalExercise
+key: e183fa15f8
+lang: r
+xp: 100
+skills: 1
+```
+
+
+Examinez le code ci-contre. Le premier appel à `str_match()` isole l'unité de mesure -"g" ou "l" précédé ou non d'une autre lettre- du reste des chaînes de caractère.
+
+`@instructions`
+
+Complétez le deuxième appel pour aussi isoler les " de " ou " d'" dans les chaînes de caractère (pensez aux espaces!).
+
+`@hint`
+Avez-vous pensé aux espaces (un *de part et d'autre* du "de"  un *avant* le "d'"),, et à préceder l'apostrophe d'un "\" ?
+
+
+`@pre_exercise_code`
+```{r}
+
+```
+
+`@sample_code`
+
+```{r}
+library(stringr)
+
+ingredients <- c(" g de chocolat",
+                 " kg de farine", 
+                 " ml de lait",
+                 " dl d'huile",
+                 " g de café soluble",
+                 " l de lait")
+
+match1 <- str_match(ingredients,"(\\w?g|\\w?l)(.*)")
+match1
+match2 <- str_match(ingredients,"(\\w?g|\\w?l)(___)(.*)"
+match2
+```
+
+`@solution`
+```{r}
+library(stringr)
+
+ingredients <- c(" g de chocolat",
+                 " kg de farine", 
+                 " ml de lait",
+                 " dl d'huile",
+                 " g de café soluble",
+                 " l de lait")
+
+match1 <- str_match(ingredients,"(\\w?g|\\w?l)(.*)")
+match1
+match2 <- str_match(ingredients,"(\\w?g|\\w?l)( de | d\')(.*)")
+match2
+```
+
+`@sct`
+```{r}
+ex() %>% check_error()
+ex() %>% check_library("stringr")
+ex() %>% check_object("ingredients") %>% check_equal()
+ex() %>% check_object("match2") %>% check_equal()
+success_msg("C'est bien! Vous avez su vous inspirer d'une expression régulière pour en créer une autre...")
+```
+
 

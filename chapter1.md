@@ -78,7 +78,7 @@ skills: 1
 key: d2c087ae11
 ```
 
-Observez la **page web** qui décrit la recette du bavarois au chocolat blanc et aux framboises (son url se termine par .aspx mais le contenu est bien de l'html!!), 
+Observez la **page web** qui décrit la recette du bavarois au chocolat blanc et aux framboises (son url se termine par .aspx mais le contenu est bien de l'html!!), Vous pouvez ouvrir cette page sur votre navigateur, puis essayer d'utiliser le **selectorGadget** ou **examiner le code source de la page** sur votre navigateur web pour déterminer quelle est la **classe des éléments** qui nous intéressent ici...
 
 Nous souhaitons récupérer le **nom de la recette** à partir du contenu html de la page.
 
@@ -170,7 +170,7 @@ On repart de l'objet `html` de l'exercice précédent (même recette de bavarois
 
 `@instructions`
 
-Récupérer le nom des **ingrédients** (pour l'instant accompagnés de leurs unités de mesure: "g de biscuits à la cuillère", "g de beurre rammoli", etc.), et les **quantités** correspondantes (150, 170, etc.).
+Récupérer le nom des **ingrédients** (pour l'instant accompagnés de leurs unités de mesure: "g de biscuits à la cuillère", "g de beurre ramolli", etc.), et les **quantités** correspondantes (150, 170, etc.).
 
 Vous pouvez essayer d'utiliser le **selectorGadget** ou **examiner le code source de la page** sur votre navigateur web pour déterminer quelle est la **classe des éléments** qui nous intéressent ici...
 
@@ -191,21 +191,28 @@ library(rvest)
 ingredients <- html %>%
   html_nodes(___) %>% 
   html_text()
+ingredients  
+  
 quantites <- html %>%
   html_nodes(___)  %>%
   html_text()
+quantites  
+ 
 ```
 
 `@solution`
 ```{r}
 library(rvest)
+  
+ingredients <- html %>%
+  html_nodes(".ingredient") %>% 
+  html_text()
+ingredients
 
 quantites <- html %>%
   html_nodes(".recipe-ingredient-qt")  %>%
   html_text()
-ingredients <- html %>%
-  html_nodes(".ingredient") %>% 
-  html_text()
+quantites
 ```
 
 `@sct`

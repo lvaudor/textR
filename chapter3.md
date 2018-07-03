@@ -16,6 +16,7 @@ skills: 1
 
 
 Examinez les premiers commentaires de la table `tib_commentaires` (en fait, une sous-partie seulement de cette table, déjà présente dans l'environnement).
+(Il y a un problème apparent d'encodage quand j'affiche un objet de classe `tibble` mais si vous affichez seulement tib_commentaires$texte ça va -on va faire comme s'il n'y avait pas de problème, vu que j'ai mis le problème de l'encodage de caractères sous le tapis pour ce tuto, d'accord ?- ;-) ).
 
 Dans cette table, **une ligne** correspond à **un commentaire**.
 
