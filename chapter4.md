@@ -174,6 +174,7 @@ tib_mots_nonvides=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tut
 
 `@sample_code`
 ```{r}
+library(dplyr)
 tib_mots_frequence=tib_mots_nonvides %>% 
   group_by(___) %>% 
   ___(freq=n()) %>% 
@@ -187,6 +188,7 @@ ggplot(tib_mots_frequence, aes(x=___, y=___))+
 
 `@solution`
 ```{r}
+library(dplyr)
 tib_mots_frequence=tib_mots_nonvides %>% 
   group_by(lemme) %>% 
   summarise(freq=n()) %>% 
@@ -202,6 +204,7 @@ ggplot(tib_mots_frequence, aes(x=word, y=freq))+
 ```{r}
 ex() %>% check_error()
 ex() %>% check_library("ggplot2")
+ex() %>% check_library("dplyr")
 
 ex() %>% check_function("summarise")
 ex() %>% check_function("top_n") %>% check_arg("n") %>% check_equal()
