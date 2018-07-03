@@ -9,3 +9,4 @@
 # apt-get update && apt-get install --yes libxml2-dev libcairo2-dev
 apt-get update && apt-get install --yes libxml2-dev
 apt-get update && apt-get install --yes r-cran-igraph
+apt-get update && apt-get install --yes r-cran-rcpp
