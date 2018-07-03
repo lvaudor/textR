@@ -212,6 +212,7 @@ On va maintenant essayer d'associer aux mots des commentaires des **sentiments**
 
 
 `@hint`
+Les tables `scores` et `sentiments` sont renvoyées par la fonction `proust_sentiments()` (pour des valeurs de l'argument `type` différentes). 
 
 `@pre_exercise_code`
 ```{r}

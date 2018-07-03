@@ -339,8 +339,7 @@ library(dplyr)
 mots_paires_filtre=mots_paires %>%
    filter(n>20,
           correlation>0.3,
-          item1!="recette",
-          item2!="recette")
+          item1!="recette" & item2!="recette")
 
 library(ggraph)
 tib_graph <- _____(mots_paires_filtre)
@@ -358,8 +357,7 @@ library(dplyr)
 mots_paires_filtre=mots_paires %>%
    filter(n>20,
           correlation>0.3,
-          item1!="recette",
-          item2!="recette")
+          item1!="recette" & item2!="recette")
 
 library(ggraph)
 tib_graph <- ______(mots_paires_filtre)

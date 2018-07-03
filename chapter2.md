@@ -124,9 +124,9 @@ skills: 1
 ```
 
 
-`@instructions`
+Examinez le code ci-contre. Le premier appel à `str_match()` isole l'unité de mesure -"g" ou "l" précédé ou non d'une autre lettre- du reste des chaînes de caractère.
 
-Examinez le code ci-contre. Le premier appel à str_match isole l'unité de mesure -"g" ou "l" précédé ou non d'une autre lettre- du reste des chaînes de caractère
+`@instructions`
 
 Complétez le deuxième appel pour aussi isoler les " de " ou " d'" dans les chaînes de caractère.
 
