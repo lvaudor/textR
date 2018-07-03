@@ -136,7 +136,7 @@ ex() %>% check_library("wordcloud")
 
 ex() %>% check_function("wordcloud") %>% {
 check_arg(.,"freq") %>% check_equal()
-check_arg(.,"word") %>% check_equal()
+check_arg(.,"words") %>% check_equal()
 }
 
 success_msg("Bien joué! Un nuage de mots sur un rapport, c'est comme un espuma sur une assiette: ça en jette.")
@@ -195,7 +195,7 @@ tib_mots_frequence=tib_mots_nonvides %>%
   top_n(15,freq)
 
 library(ggplot2)
-ggplot(tib_mots_frequence, aes(x=word, y=freq))+
+ggplot(tib_mots_frequence, aes(x=lemme, y=freq))+
   geom_bar(stat="identity")+
   coord_flip()
 ```
@@ -344,9 +344,10 @@ mots_paires_filtre=mots_paires %>%
           ___,
           item1!="recette" & item2!="recette")
 
-library(ggraph)
+library(igraph)
 tib_graph <- _____(mots_paires_filtre)
 
+library(ggraph)
 ggraph(__________,layout = "fr") +
    geom_edge_link() +
    geom_node_point(color = "lightblue", size = 5) +
@@ -362,9 +363,10 @@ mots_paires_filtre=mots_paires %>%
           correlation>=0.3,
           item1!="recette" & item2!="recette")
 
-library(ggraph)
+library(igraph)
 tib_graph <- graph_from_data_frame(mots_paires_filtre)
 
+library(ggraph)
 ggraph(tib_graph, layout = "fr") +
    geom_edge_link() +
    geom_node_point(color = "lightblue", size = 5) +
