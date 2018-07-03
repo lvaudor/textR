@@ -209,10 +209,7 @@ ex() %>% check_library("dplyr")
 ex() %>% check_function("summarise")
 ex() %>% check_function("top_n") %>% check_arg("n") %>% check_equal()
 
-ex() %>% check_function("ggplot") %>% {
-check_arg(.,"data") %>% check_equal()
-check_arg(.,"mapping") %>% check_equal()
-}
+ex() %>% check_function("ggplot") 
 
 ex() %>% check_function("geom_bar") %>% check_arg("stat") %>% check_equal()
 success_msg("Bravo! Voilà un graphique simple mais efficace pour représenter les fréquences lexicales.")
@@ -238,7 +235,7 @@ Filtrez la table `tib_mots_nonvides` pour ne garder que les lemmes dont la fréq
 Calculez `mots_comptes` et `mots_cors`
 
 `@hint`
-Avez-vous bien pensé qu'on ne cherchait pas à **résumer** l'information par mot mais simplement à **rajouter une variable `freq` qui va nous servir à filtrer les mots? Par ailleurs, c'est bien la **recette** qui définit la cooccurrence (et non le commentaire)... 
+Avez-vous bien pensé qu'on ne cherchait pas à **résumer** l'information par mot mais simplement à **rajouter une variable `freq`** qui va nous servir à filtrer les mots? Par ailleurs, c'est bien la **recette** qui définit la cooccurrence (et non le commentaire)... 
 
 
 `@pre_exercise_code`
@@ -326,6 +323,7 @@ On va maintenant réaliser un graphe à partir du tableau réalisé précédemme
 
 `@instructions`
 Filtrez le tableau pour ne conserver que les paires dont la **fréquence de cooccurrence** est **supérieure ou égale à 20** et la **corrélation** est **supérieure ou égale à 0.3**. On retire également le mot "recette" qui est omniprésent!
+Transformez le tableau `mots_paires_filtre` en objet de classe "igraph" (-> `graph`) et testez les fonctions de ggraph pour représenter ce graphe...
 
 `@hint`
 Avez-vous bien transformé la table `mots_paires_filtre` en objet de classe `igraph` à l'aide de la fonction `graph_from_data_frame()`?
@@ -364,10 +362,10 @@ mots_paires_filtre=mots_paires %>%
           item1!="recette" & item2!="recette")
 
 library(igraph)
-tib_graph <- graph_from_data_frame(mots_paires_filtre)
+graph <- graph_from_data_frame(mots_paires_filtre)
 
 library(ggraph)
-ggraph(tib_graph, layout = "fr") +
+ggraph(graph, layout = "fr") +
    geom_edge_link() +
    geom_node_point(color = "lightblue", size = 5) +
    geom_node_text(aes(label = name), repel = TRUE) +
@@ -378,7 +376,7 @@ ggraph(tib_graph, layout = "fr") +
 ```{r}
 ex() %>% check_error()
 ex() %>% check_library("ggraph")
-ex() %>% check_object("tib_graph")
+ex() %>% check_object("graph")
 ex() %>% check_function("graph_from_data_frame")
 ex() %>% check_function("ggraph")
 success_msg("Magnifique! Eh bien, c'est fini pour aujourd'hui. Je crois qu'on a bien mérité d'aller prendre notre goûter.")
