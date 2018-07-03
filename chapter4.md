@@ -1,10 +1,80 @@
 ---
 title       : Visualisation
 title_meta: Chapter 4
-description : Ce chapitre vous montre comment réaliser quelques graphiques à partir de données lexicales.Diapos ici <a class="white-link" href="http://perso.ens-lyon.fr/lise.vaudor/tutos/tuto_texte/tuto_texte_part4.html"  target="_blank">.
+description : Ce chapitre vous montre comment réaliser quelques graphiques à partir de données lexicales.
 
 ---
+## Un peu de tri
 
+```yaml
+type: NormalExercise
+key: 166d428a58
+lang: r
+xp: 100
+skills: 1
+```
+
+Avant de se lancer dans la production de graphiques, on va faire un peu de tri dans les mots pour ne garder que les plus fréquents (sinon, nos graphiques seront surchargés!). On va pour cela utiliser la table `tib_mots_nonvides` (déjà dans l'environnement).
+
+`@instructions`
+
+**Ajoutez une colonne** `freq`, qui compte la fréquence d'occurrence des lemmes dans la table `tib_mots_nonvides` (-> table `tib1`).
+
+**Résumez** les fréquences d'occurrence des lemmes dans `tib_mots_nonvides` (-> table `tib2`).
+
+`@hint`
+La nuance est dans la différence entre `mutate()` et `summarise()`.
+
+
+`@pre_exercise_code`
+```{r}
+tib_mots_nonvides=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_mots_nonvides.csv")
+```
+
+`@sample_code`
+```{r}
+library(dplyr)
+tib1 <- tib_mots_nonvides %>% 
+  group_by(lemme) %>% 
+  ___(freq=___)
+dim(tib1)
+  
+tib2 <- tib_mots_nonvides %>% 
+  group_by(lemme) %>% 
+  ___(freq=___)  
+dim(tib2)
+```
+
+`@solution`
+```{r}
+library(dplyr)
+tib1 <- tib_mots_nonvides %>% 
+  group_by(lemme) %>% 
+  mutate(freq=n())
+dim(tib1)
+  
+tib2 <- tib_mots_nonvides %>% 
+  group_by(lemme) %>% 
+  summarise(freq=n())
+dim(tib2)
+```
+
+`@sct`
+```{r}
+ex() %>% check_error()
+
+ex() %>% check_library("dplyr")
+
+ex() %>% check_object("tib1")
+ex() %>% check_function("mutate")
+
+ex() %>% check_object("tib2")
+ex() %>% check_function("summarise")
+
+success_msg("Bien joué! Pour faire un graphique de type nuage de mots, on va typiquement avoir besoin du genre d'opération réalisé avec summarise... Pour travailler sur les cooccurrences, on ne veut pas perdre le lien entre les mots (c'est-à-dire leur appartenance à un commentaire commun) donc on va plutôt avoir besoin du genre d'opération réalisé avec mutate.")
+```
+
+---
 ## Nuage de mots
 
 ```yaml
@@ -15,7 +85,7 @@ xp: 100
 skills: 1
 ```
 
-On va maintenant réaliser un nuage de mots à partir de la table `tib_mots_nonvides` (déjà dans l'environnement).
+
 
 
 `@instructions`
@@ -27,23 +97,15 @@ Avez-vous bien réussi à calculer `tib_mots_frequence` (`summarise(freq=n())` e
 
 `@pre_exercise_code`
 ```{r}
-tib_commentaires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_commentaires.csv")
-
-library(tidytext)  
-tib_mots <- unnest_tokens(tib_commentaires,
-                          output="word",
-                          input="texte")
-library(proustr)
-library(dplyr)
-tib_mots_nonvides <- anti_join(tib_mots,
-                               proust_stopwords())       
+tib_mots_nonvides=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_mots_nonvides.csv")
 ```
 
 `@sample_code`
 ```{r}
+library(dplyr
 tib_mots_frequence=tib_mots_nonvides %>% 
   group_by(word) %>% 
-  summarise(freq=___)%>% 
+  summarise(freq=n())%>% 
   filter(___)
 
 library(wordcloud)  
@@ -53,6 +115,7 @@ wordcloud(___,
 
 `@solution`
 ```{r}
+library(dplyr)
 tib_mots_frequence=tib_mots_nonvides %>% 
   group_by(word) %>% 
   summarise(freq=n())%>% 
@@ -66,13 +129,18 @@ wordcloud(tib_mots_frequence$word,
 `@sct`
 ```{r}
 ex() %>% check_error()
+
+ex() %>% check_library("dplyr")
 ex() %>% check_library("wordcloud")
+
 ex() %>% check_function("wordcloud") %>% {
 check_arg(.,"freq") %>% check_equal()
 check_arg(.,"word") %>% check_equal()
 }
+
 success_msg("Bien joué! Un nuage de mots sur un rapport, c'est comme un espuma sur une assiette: ça en jette.")
 ```
+
 
 
 
@@ -87,34 +155,27 @@ xp: 100
 skills: 1
 ```
 
+On va maintenant réaliser un diagramme en bâtons.
 
 `@instructions`
 
-On va maintenant réaliser un diagramme en bâtons montrant les ayant les 15 fréquences les plus élevées à l'aide des fonctions de `ggplot2`
+Réduisez le nombre de lemmes à intégrer au graphique en ne conservant que ceux qui ont les 15 fréquences les plus élevées?
+.
 
 `@hint`
-Avez-vous bien utilisé la fonction `geom_bar()` en spécifiant que l'on représente en y f(y) où f= la fonction identité?
+On a calculé par nous-même les fréquences (afin de faire un tri préalable) donc on passe cette fréquence en variable "y" à ggplot...
 
 
 `@pre_exercise_code`
 ```{r}
-tib_commentaires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_commentaires.csv")
-
-library(tidytext)  
-tib_mots <- unnest_tokens(tib_commentaires,
-                          output="word",
-                          input="texte")
-library(proustr)
-library(dplyr)
-tib_mots_nonvides <- anti_join(tib_mots,
-                               proust_stopwords())    
+tib_mots_nonvides=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_mots_nonvides.csv")
 ```
 
 `@sample_code`
 ```{r}
 tib_mots_frequence=tib_mots_nonvides %>% 
-  group_by(word) %>% 
-  summarise(freq=n()) %>% 
+  group_by(___) %>% 
+  ___(freq=n()) %>% 
   top_n(___,___)
 
 library(ggplot2)
@@ -126,7 +187,7 @@ ggplot(tib_mots_frequence, aes(x=___, y=___))+
 `@solution`
 ```{r}
 tib_mots_frequence=tib_mots_nonvides %>% 
-  group_by(word) %>% 
+  group_by(lemme) %>% 
   summarise(freq=n()) %>% 
   top_n(15,freq)
 
@@ -141,6 +202,7 @@ ggplot(tib_mots_frequence, aes(x=word, y=freq))+
 ex() %>% check_error()
 ex() %>% check_library("ggplot2")
 
+ex() %>% check_function("summarise")
 ex() %>% check_function("top_n") %>% check_arg("n") %>% check_equal()
 
 ex() %>% check_function("ggplot") %>% {
@@ -148,7 +210,6 @@ check_arg(.,"data") %>% check_equal()
 check_arg(.,"mapping") %>% check_equal()
 }
 
-ex() %>% check_function("coord_flip")
 ex() %>% check_function("geom_bar") %>% check_arg("stat") %>% check_equal()
 success_msg("Bravo! Voilà un graphique simple mais efficace pour représenter les fréquences lexicales.")
 ```
@@ -172,45 +233,140 @@ skills: 1
 
 `@pre_exercise_code`
 ```{r}
-tib_commentaires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_commentaires.csv")
-
-library(tidytext)  
-tib_mots <- unnest_tokens(tib_commentaires,
-                          output="word",
-                          input="texte")
-library(proustr)
-library(dplyr)
-tib_mots_nonvides <- anti_join(tib_mots,
-                               proust_stopwords())    
+tib_mots_nonvides=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_mots_nonvides.csv")
 ```
 
 `@sample_code`
 ```{r}
-library(widyr)
-
-tib_mots_filtree=tib_mots %>% 
-  group_by(word) %>%
+library(dplyr)
+tib_mots_filtree <- tib_mots_nonvides %>% 
+  group_by(lemme) %>%
   mutate(n=n()) %>% 
   filter(n>50) %>% 
   ungroup() 
 
-mots_paires=tib_mots_filtree %>%
-  pairwise_count(lemme,recette,sort=TRUE) 
 
-mots_cors= tib_mots_filtree %>% 
-  pairwise_cor(lemme,recette,sort=TRUE)
+library(widyr)
+mots_comptes <- tib_mots_filtree %>%
+  _______(___,___,sort=TRUE) 
 
-mots_paires=left_join(mots_paires,
-                      mots_cors,
-                      by=c("item1","item2"))
+mots_cors <- tib_mots_filtree %>% 
+  _______(___,___,sort=TRUE)
+
+mots_paires <- left_join(mots_comptes,
+                         mots_cors,
+                         by=c("item1","item2"))
 ```
 
 `@solution`
 ```{r}
+library(dplyr)
+tib_mots_filtree <- tib_mots_nonvides %>% 
+  group_by(lemme) %>%
+  mutate(n=n()) %>% 
+  filter(n>50) %>% 
+  ungroup() 
 
+
+library(widyr)
+mots_comptes <-tib_mots_filtree %>%
+  pairwise_count(lemme,recette,sort=TRUE) 
+
+mots_cors <- tib_mots_filtree %>% 
+  pairwise_cor(lemme,recette,sort=TRUE)
+
+mots_paires=left_join(mots_comptes,
+                      mots_cors,
+                      by=c("item1","item2"))
 ```
 
 `@sct`
 ```{r}
+ex() %>% check_error()
+ex() %>% check_library("widyr")
+ex() %>% check_library("dplyr")
+ex() %>% check_object("mots_comptes")
+ex() %>% check_function("pairwise_count") %>% {
+check_arg(.,"tbl")
+check_arg(.,"item")
+}
+
+ex() %>% check_object("mots_cors")
+ex() %>% check_function("pairwise_cor") %>% {
+check_arg(.,"tbl")
+check_arg(.,"item")
+}
+```
+
+
+---
+## Graphe
+
+```yaml
+type: NormalExercise
+key: 9b03e5b33d
+lang: r
+xp: 100
+skills: 1
+```
+
+
+`@instructions`
+
+`@hint`
+
+`@pre_exercise_code`
+```{r}
+mots_paires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/mots_paires.csv")
+```
+
+`@sample_code`
+```{r}
+library(dplyr)
+mots_paires_filtre=mots_paires %>%
+   filter(n>20,
+          correlation>0.3,
+          item1!="recette",
+          item2!="recette")
+
+library(ggraph)
+tib_graph <- _____(mots_paires_filtre)
+
+ggraph(__________,layout = "fr") +
+   geom_edge_link(aes(edge_alpha = correlation),
+                  show.legend = FALSE) +
+   geom_node_point(color = "lightblue", size = 5) +
+   geom_node_text(aes(label = name), repel = TRUE) +
+   theme_void()
+```
+
+`@solution`
+```{r}
+library(dplyr)
+mots_paires_filtre=mots_paires %>%
+   filter(n>20,
+          correlation>0.3,
+          item1!="recette",
+          item2!="recette")
+
+
+library(ggraph)
+tib_graph <- ______(mots_paires_filtre)
+
+ggraph(tib_graph, layout = "fr") +
+   geom_edge_link(aes(edge_alpha = correlation),
+                  show.legend = FALSE) +
+   geom_node_point(color = "lightblue", size = 5) +
+   geom_node_text(aes(label = name), repel = TRUE) +
+   theme_void()
+```
+
+`@sct`
+```{r}
+ex() %>% check_error()
+ex() %>% check_library("ggraph")
+ex() %>% check_object("tib_graph")
+ex() %>% check_function("graph_from_data_frame")
+ex() %>% check_function("ggraph")
 
 ```

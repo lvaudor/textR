@@ -1,8 +1,7 @@
 ---
 title       : Manipuler du texte en langage naturel
 title_meta: Chapter 3
-description : Ce chapitre vous montre comment à partir de texte en langage naturel (ici en français) mettre en forme des tables clean et tidy vous permettant quelques analyses lexicales. Diapos ici <a class="white-link" href="http://perso.ens-lyon.fr/lise.vaudor/tutos/tuto_texte/tuto_texte_part3.html"  target="_blank">.
-
+description : Ce chapitre vous montre comment à partir de texte en langage naturel (ici en français) mettre en forme des tables clean et tidy vous permettant quelques analyses lexicales.
 
 ---
 ## Tokenisation
@@ -17,7 +16,7 @@ skills: 1
 
 `@instructions`
 
-Examinez les premiers commentaires de la table `tib_comments` (déjà présente dans l'environnement). Dans cette table, **une ligne** correspond à **un commentaire**.
+Examinez les premiers commentaires de la table `tib_commentaires` (déjà présente dans l'environnement). Dans cette table, **une ligne** correspond à **un commentaire**.
 
 Tokenisez les commentaires pour obtenir la table `tib_comments_words`, pour laquelle **une ligne** correspond à **un mot**.
 
@@ -30,7 +29,7 @@ Tokenisez les commentaires pour obtenir la table `tib_comments_words`, pour laqu
 
 `@pre_exercise_code`
 ```{r}
-tib_commentaires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_commentaires.csv")
+tib_commentaires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/ptib_commentaires.csv")
 ```
 
 `@sample_code`
@@ -86,22 +85,19 @@ skills: 1
 
 `@instructions`
 
-On repart de la table `tib_comments_words` créée dans l'exercice précédent.
+On repart de la table `tib_mots`.
 
 On charge la librairie `proustr`: examinez les mots-outils listés par la fonction `proust_stopwords`.
 
-Complétez l'appel à `anti_join()` pour écarter de `tib_comments_words` les mots présents dans le jeu de données renvoyé par `proust_stopwords()`  
+Complétez l'appel à `anti_join()` pour écarter de `tib_mots` les mots présents dans le jeu de données renvoyé par `proust_stopwords()`  
 
 `@hint`
 Il s'agit ici de faire une jointure "anti": tous les mots de `tib_mots` **sauf** ceux qui apparaissent dans `proust_stopwords()`!
 
 `@pre_exercise_code`
 ```{r}
-tib_commentaires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_commentaires.csv")
+tib_mots=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/ptib_mots.csv")
 library(tidytext)  
-tib_mots <- unnest_tokens(tib_commentaires,
-                          output="word",
-                          input="texte")
 ```
 
 `@sample_code`
@@ -157,22 +153,15 @@ skills: 1
 
 `@instructions`
 
-On repart de la table `tib_comments_mainwords` créée précédemment (déjà présente dans l'environnement). Créez la table `tib_comments_mainwords_stemmed` en utilisant pour cela la fonction adéquate du package `proustr`.
+On repart de la table `tib_mots_nonvides` créée précédemment (déjà présente dans l'environnement). Créez la table `tib_racines` en utilisant pour cela la fonction adéquate du package `proustr`.
 
 `@hint`
 Avez-vous trouvé de quelle fonction il s'agissait? il s'agit de `pr_stem_words()`...
 
 `@pre_exercise_code`
 ```{r}
-tib_commentaires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_commentaires.csv")
+tib_mots_nonvides=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/ptib_mots_nonvides.csv")
 library(tidytext)  
-tib_mots <- unnest_tokens(tib_commentaires,
-                          output="word",
-                          input="texte")
-library(proustr)
-library(dplyr)
-tib_mots_nonvides <- anti_join(tib_mots,
-                               proust_stopwords())                                     
 ```
 
 `@sample_code`
@@ -222,16 +211,7 @@ skills: 1
 
 `@pre_exercise_code`
 ```{r}
-tib_commentaires=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_commentaires.csv")
-
-library(tidytext)  
-tib_mots <- unnest_tokens(tib_commentaires,
-                          output="word",
-                          input="texte")
-library(proustr)
-library(dplyr)
-tib_mots_nonvides <- anti_join(tib_mots,
-                               proust_stopwords())       
+tib_mots_nonvides=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/ptib_mots_nonvides.csv")
 ```
 
 `@sample_code`

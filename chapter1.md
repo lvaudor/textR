@@ -1,7 +1,7 @@
 ---
 title: Scraper des données du web
 title_meta: Chapter 1
-description: Ce chapitre vous montre comment scraper les informations affichées dans des pages html à l' aide des fonctions du package rvest. Diapos ici <a class="white-link" href="http://perso.ens-lyon.fr/lise.vaudor/tutos/tuto_texte/tuto_texte_part1.html"  target="_blank">.
+description: Ce chapitre vous montre comment scraper les informations affichées dans des pages html à l' aide des fonctions du package rvest.
 
 ---
 ## Un exo pour comprendre les exos Datacamp

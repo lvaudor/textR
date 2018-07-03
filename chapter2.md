@@ -1,7 +1,7 @@
 ---
 title       : Manipuler des chaînes de caractère
 title_meta: Chapter 2
-description : Ce chapitre vous montre comment manipuler, transformer, nettoyer des chaînes de caractère à l'aide des fonctions du package `stringr`.Diapos ici <a class="white-link" href="http://perso.ens-lyon.fr/lise.vaudor/tutos/tuto_texte/tuto_texte_part2.html"  target="_blank">.
+description : Ce chapitre vous montre comment manipuler, transformer, nettoyer des chaînes de caractère à l'aide des fonctions du package `stringr`.
 ---
 
 ## Remplacer un pattern par un autre
