@@ -10,3 +10,4 @@
 apt-get update && apt-get install --yes libxml2-dev
 apt-get update && apt-get install --yes r-cran-igraph
 apt-get update && apt-get install --yes r-cran-rcpp
+apt-get update && apt-get install --yes libudunits2-dev
