@@ -14,18 +14,18 @@ xp: 10
 skills: 1
 ```
 
-Cet exercice sert purement et simplement à vous montrer comment fonctionne la plateforme Datacamp... 
+Cet exercice sert à vous montrer comment fonctionne la plateforme Datacamp... 
 
 `@instructions`
 
-Ici, vous trouverez les **instructions** pour réaliser les exercices. Ici, imaginons que le but de l'exercice soit d'assigner la valeur 33 à l'objet `a`.
+Ici, vous trouverez les **consignes**. Ici, imaginons que le but de l'exercice soit d'assigner la valeur 33 à l'objet `a`.
 
 En face, vous avez:
 
-- **en haut à droite** un éditeur, et 
-- en **bas à gauche** une **console R**. L'environnement peut déjà contenir un certain nombre d'objets (des jeux de données par exemple).
+- **en haut** un éditeur, et 
+- en **bas** une **console R**. L'environnement peut déjà contenir un certain nombre d'objets (des jeux de données par exemple).
 
-Si vous ne parvenez pas à résoudre l'exercice, vous pouvez demander un indice (bouton **Take Hint**, ci-dessous), puis demander la solution (**Show Answer**) si l'indice n'est pas suffisant pour vous débloquer...
+Si vous ne parvenez pas à résoudre l'exercice, vous pouvez demander un indice, puis la solution (**Take Hint** puis **Show Answer**, ci-dessous)...
 
 `@hint`
 Avez-vous bien changé ___ en '33'?
