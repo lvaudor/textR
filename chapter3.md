@@ -163,7 +163,7 @@ Avez-vous trouvé de quelle fonction il s'agissait? il s'agit de `pr_stem_words(
 
 `@pre_exercise_code`
 ```{r}
-tib_mots_nonvides=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/ptib_mots_nonvides.csv")
+tib_mots_nonvides=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_mots_nonvides.csv")
 library(tidytext)  
 ```
 
@@ -216,7 +216,7 @@ Les tables `scores` et `sentiments` sont renvoyées par la fonction `proust_sent
 
 `@pre_exercise_code`
 ```{r}
-tib_mots_nonvides=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/ptib_mots_nonvides.csv")
+tib_mots_nonvides=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_mots_nonvides.csv")
 ```
 
 `@sample_code`
