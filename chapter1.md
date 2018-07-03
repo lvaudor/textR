@@ -10,7 +10,7 @@ description: Ce chapitre vous montre comment scraper les informations affichées
 type: NormalExercise
 key: cad10d2f39
 lang: r
-xp: 100
+xp: 10
 skills: 1
 ```
 
@@ -233,7 +233,7 @@ xp: 25
 skills: 1
 ```
 
-Examinez le code suivant (il nécessite de charger les packages rvest et dplyr pour fonctionner):
+Examinez le code suivant (il nécessite de charger les packages `rvest` et `dplyr` pour fonctionner):
 
 ```{r}
 recup_ingredients <- function(url){
@@ -254,11 +254,7 @@ recup_ingredients <- function(url){
     return(tib)
 }
 ```
-
-`@instructions`
-
 Que fait la fonction `recup_ingredients()`?
-
 
 `@possible_answers`
 - Elle prend en entrée l'**url** d'une recette Marmiton et renvoie une **liste** de la liste des ingrédients et de la liste des quantités.
@@ -287,7 +283,7 @@ test_mc(correct=2, feedback_msgs = c(msg1, msg2, msg3, msg4))
 type: NormalExercise
 key: 3d5388c816
 lang: r
-xp: 100
+xp: 50
 skills: 1
 ```
 

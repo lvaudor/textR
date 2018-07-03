@@ -10,7 +10,7 @@ description : Ce chapitre vous montre comment manipuler, transformer, nettoyer d
 type: NormalExercise
 key: 4c919a781d
 lang: r
-xp: 25
+xp: 50
 skills: 1
 ```
 
@@ -76,7 +76,7 @@ success_msg("Bien joué! vous avez remplacé un pattern fixe par un autre... Voy
 type: MultipleChoiceExercise
 key: 4eb98c3ed1
 lang: r
-xp: 50
+xp: 25
 skills: 1
 ```
 
@@ -186,7 +186,7 @@ success_msg("C'est bien! Vous avez su vous inspirer d'une expression régulière
 type: NormalExercise
 key: cf6710de05
 lang: r
-xp: 100
+xp: 50
 skills: 1
 ```
 

@@ -10,7 +10,7 @@ description : Ce chapitre vous montre comment réaliser quelques graphiques à p
 type: NormalExercise
 key: 166d428a58
 lang: r
-xp: 100
+xp: 50
 skills: 1
 ```
 
@@ -81,7 +81,7 @@ success_msg("Bien joué! Pour faire un graphique de type nuage de mots, on va ty
 type: NormalExercise
 key: 615077e0c5
 lang: r
-xp: 100
+xp: 50
 skills: 1
 ```
 
@@ -152,11 +152,11 @@ success_msg("Bien joué! Un nuage de mots sur un rapport, c'est comme un espuma 
 type: NormalExercise
 key: 92873aa904
 lang: r
-xp: 100
+xp: 50
 skills: 1
 ```
 
-On va maintenant réaliser un diagramme en bâtons.
+On va maintenant réaliser un **diagramme en bâtons** montrant les fréquences des mots les plus utilisés dans les commentaires Marmiton.
 
 `@instructions`
 
@@ -315,7 +315,7 @@ success_msg("Bien joué! Cette opération, en définissant des liens entre les m
 type: NormalExercise
 key: 9b03e5b33d
 lang: r
-xp: 100
+xp: 50
 skills: 1
 ```
 

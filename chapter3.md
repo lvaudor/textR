@@ -81,7 +81,7 @@ success_msg("Yes! La fonction unnest_tokens() nous mâche bien le travail pour l
 type: NormalExercise
 key: dd7c384372
 lang: r
-xp: 100
+xp: 50
 skills: 1
 ```
 
@@ -129,13 +129,12 @@ ex() %>% check_error()
 ex() %>% check_library("proustr")
 ex() %>% check_library("dplyr")
 
-ex() %>% check_object("tib_mots") %>% check_equal()
 ex() %>% check_object("tib_mots_nonvides") %>% check_equal()
 ex() %>% check_function("anti_join") %>% {
 check_arg("x") %>% check_equal()
 check_arg("y") %>% check_equal()
 }
-test_object("tib_comments_mainwords")
+test_object("tib_mots_nonvides")
 success_msg("Super! On va maintenant se concentrer sur ce tableau `tib_mots_nonvides` pour la suite des exercices...")
 ```
 
@@ -148,7 +147,7 @@ success_msg("Super! On va maintenant se concentrer sur ce tableau `tib_mots_nonv
 type: NormalExercise
 key: c28fe2bb6d
 lang: r
-xp: 100
+xp: 25
 skills: 1
 ```
 
@@ -183,7 +182,9 @@ tib_racines <-  pr_stem_words(tib_mots_nonvides,
 `@sct`
 ```{r}
 ex() %>% check_error()
+
 ex() %>% check_library("proustr")
+
 ex() %>% check_object("tib_racines") %>% check_equal()
 ex() %>% check_function("pr_stem_words") %>% {
 check_arg(.,"df") %>% check_equal()
@@ -199,7 +200,7 @@ success_msg("Bien joué! Vous pouvez constater que la racinisation est très sim
 type: NormalExercise
 key: c3ee1afd6f
 lang: r
-xp: 100
+xp: 50
 skills: 1
 ```
 
