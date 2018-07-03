@@ -131,8 +131,8 @@ ex() %>% check_library("dplyr")
 
 ex() %>% check_object("tib_mots_nonvides") %>% check_equal()
 ex() %>% check_function("anti_join") %>% {
-check_arg("x") %>% check_equal()
-check_arg("y") %>% check_equal()
+check_arg(.,"x") %>% check_equal()
+check_arg(.,"y") %>% check_equal()
 }
 test_object("tib_mots_nonvides")
 success_msg("Super! On va maintenant se concentrer sur ce tableau `tib_mots_nonvides` pour la suite des exercices...")
@@ -187,8 +187,8 @@ ex() %>% check_library("proustr")
 
 ex() %>% check_object("tib_racines") %>% check_equal()
 ex() %>% check_function("pr_stem_words") %>% {
-check_arg(.,"df") %>% check_equal()
-check_arg(.,"col") %>% check_equal()
+check_arg(.,"df")
+check_arg(.,"col")
 }
 success_msg("Bien joué! Vous pouvez constater que la racinisation est très simple à mettre en oeuvre grâce à la fonction `pr_stem_words()`")
 ```
