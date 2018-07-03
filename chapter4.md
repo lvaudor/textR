@@ -86,14 +86,15 @@ skills: 1
 ```
 
 
-
+On va faire notre premier **nuage de mots**, en filtrant les données pour ne garder qu'une partie des mots...
 
 `@instructions`
 
-Calculez la **fréquence d'occurrence** des mots et **filtrez** pour ne garder que les mots avec une fréquence **supérieure ou égale à 20**.
+Créez un tableau qui résume la **fréquence d'occurrence** des lemmes et **filtrez** pour ne garder que les lemmes avec une fréquence **supérieure ou égale à 20**.
+Réalisez le nuage des mots à l'aide du jeu de données résultant `tib_mots_frequence`.
 
 `@hint`
-Avez-vous bien réussi à calculer `tib_mots_frequence` (`summarise(freq=n())` et `filter(freq>=20)` et à passer les bons arguments à la fonction `wordcloud()` (`tib_mots_frequence$word` et `tib_mots_frequence$freq`)?
+Avez-vous bien réussi à calculer `tib_mots_frequence` (`summarise(freq=n())` et `filter(freq>=20)` et à passer les bons arguments à la fonction `wordcloud()` (`tib_mots_frequence$lemme` et `tib_mots_frequence$freq`)?
 
 `@pre_exercise_code`
 ```{r}
@@ -104,7 +105,7 @@ tib_mots_nonvides=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tut
 ```{r}
 library(dplyr
 tib_mots_frequence=tib_mots_nonvides %>% 
-  group_by(word) %>% 
+  group_by(lemme) %>% 
   summarise(freq=n())%>% 
   filter(___)
 
@@ -117,12 +118,12 @@ wordcloud(___,
 ```{r}
 library(dplyr)
 tib_mots_frequence=tib_mots_nonvides %>% 
-  group_by(word) %>% 
+  group_by(lemme) %>% 
   summarise(freq=n())%>% 
   filter(freq>=20)
 
 library(wordcloud)  
-wordcloud(tib_mots_frequence$word,
+wordcloud(tib_mots_frequence$lemme,
           tib_mots_frequence$freq)
 ```
 
@@ -226,10 +227,16 @@ xp: 100
 skills: 1
 ```
 
+On s'intéresse maintenant à la cooccurrence des **lemmes** (les plus fréquents) par **recette**.
 
 `@instructions`
 
+Filtrez la table `tib_mots_nonvides` pour ne garder que les lemmes dont la fréquence est supérieure ou égale à 50.
+Calculez `mots_comptes` et `mots_cors`
+
 `@hint`
+Avez-vous bien pensé qu'on ne cherchait pas à **résumer** l'information par mot mais simplement à **rajouter une variable `freq` qui va nous servir à filtrer les mots? Par ailleurs, c'est bien la **recette** qui définit la cooccurrence (et non le commentaire)... 
+
 
 `@pre_exercise_code`
 ```{r}
@@ -240,9 +247,9 @@ tib_mots_nonvides=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tut
 ```{r}
 library(dplyr)
 tib_mots_filtree <- tib_mots_nonvides %>% 
-  group_by(lemme) %>%
-  mutate(n=n()) %>% 
-  filter(n>50) %>% 
+  group_by(___) %>%
+  ___(freq=__) %>% 
+  filter(freq>=___) %>% 
   ungroup() 
 
 
@@ -296,6 +303,8 @@ ex() %>% check_function("pairwise_cor") %>% {
 check_arg(.,"tbl")
 check_arg(.,"item")
 }
+
+success_msg("Bien joué! Cette opération, en définissant des liens entre les mots, va nous permettre de réaliser un graphe de toute beauté...")
 ```
 
 
@@ -310,10 +319,14 @@ xp: 100
 skills: 1
 ```
 
+On va maintenant réaliser un graphe à partir du tableau réalisé précédemment (`mots_paires` (déjà présent dans l'environnement).
 
 `@instructions`
+Filtrez le tableau pour ne conserver que les paires dont la **fréquence de cooccurrence** est **supérieure ou égale à 20** et la **corrélation** est **supérieure ou égale à 0.3**. On retire également le mot "recette" qui est omniprésent!
 
 `@hint`
+Avez-vous bien transformé la table `mots_paires_filtre` en objet de classe `igraph` à l'aide de la fonction `graph_from_data_frame()`?
+
 
 `@pre_exercise_code`
 ```{r}
@@ -333,8 +346,7 @@ library(ggraph)
 tib_graph <- _____(mots_paires_filtre)
 
 ggraph(__________,layout = "fr") +
-   geom_edge_link(aes(edge_alpha = correlation),
-                  show.legend = FALSE) +
+   geom_edge_link() +
    geom_node_point(color = "lightblue", size = 5) +
    geom_node_text(aes(label = name), repel = TRUE) +
    theme_void()
@@ -349,13 +361,11 @@ mots_paires_filtre=mots_paires %>%
           item1!="recette",
           item2!="recette")
 
-
 library(ggraph)
 tib_graph <- ______(mots_paires_filtre)
 
 ggraph(tib_graph, layout = "fr") +
-   geom_edge_link(aes(edge_alpha = correlation),
-                  show.legend = FALSE) +
+   geom_edge_link() +
    geom_node_point(color = "lightblue", size = 5) +
    geom_node_text(aes(label = name), repel = TRUE) +
    theme_void()
@@ -368,5 +378,5 @@ ex() %>% check_library("ggraph")
 ex() %>% check_object("tib_graph")
 ex() %>% check_function("graph_from_data_frame")
 ex() %>% check_function("ggraph")
-
+success_msg("Magnifique! Eh bien, c'est fini pour aujourd'hui. Je crois qu'on a bien mérité d'aller prendre notre goûter.")
 ```

@@ -233,11 +233,9 @@ xp: 25
 skills: 1
 ```
 
-Examinez le code suivant:
+Examinez le code suivant (il nécessite de charger les packages rvest et dplyr pour fonctionner):
 
 ```{r}
-library(rvest)
-library(dplyr)
 recup_ingredients <- function(url){
     html <- read_html(url)
     titre <- html %>%
@@ -256,6 +254,8 @@ recup_ingredients <- function(url){
     return(tib)
 }
 ```
+
+`@instructions`
 
 Que fait la fonction `recup_ingredients()`?
 

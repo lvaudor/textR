@@ -14,16 +14,18 @@ xp: 100
 skills: 1
 ```
 
+
+Examinez les premiers commentaires de la table `tib_commentaires` (en fait, une sous-partie seulement de cette table, déjà présente dans l'environnement).
+
+Dans cette table, **une ligne** correspond à **un commentaire**.
+
 `@instructions`
-
-Examinez les premiers commentaires de la table `tib_commentaires` (déjà présente dans l'environnement). Dans cette table, **une ligne** correspond à **un commentaire**.
-
-Tokenisez les commentaires pour obtenir la table `tib_comments_words`, pour laquelle **une ligne** correspond à **un mot**.
+Tokenisez les commentaires pour obtenir la table `tib_mots`, pour laquelle **une ligne** correspond à **un mot**.
 
 
 `@hint`
 - Avez-vous bien spécifié que la tokenisation devait se faire mot à mot? 
-- Avez-vous bien indiqué le nom de la colonne de `tib_comments_word` qui correspond à l'input? 
+- Avez-vous bien indiqué le nom de la colonne de `tib_mots` qui correspond à l'input? 
 - Avez-vous bien fourni ces arguments en les indiquant entre des guillements?
 
 
@@ -83,9 +85,9 @@ xp: 100
 skills: 1
 ```
 
-`@instructions`
+On repart de la table `tib_mots` créée précédemment lors de l'étape de tokenisation.
 
-On repart de la table `tib_mots`.
+`@instructions`
 
 On charge la librairie `proustr`: examinez les mots-outils listés par la fonction `proust_stopwords`.
 
@@ -96,7 +98,7 @@ Il s'agit ici de faire une jointure "anti": tous les mots de `tib_mots` **sauf**
 
 `@pre_exercise_code`
 ```{r}
-tib_mots=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/ptib_mots.csv")
+tib_mots=readr::read_csv("https://raw.githubusercontent.com/lvaudor/tuto_texte_Marmiton/master/data/tib_mots.csv")
 library(tidytext)  
 ```
 
@@ -150,10 +152,11 @@ xp: 100
 skills: 1
 ```
 
+On repart de la table `tib_mots_nonvides` créée précédemment (déjà présente dans l'environnement).
 
 `@instructions`
 
-On repart de la table `tib_mots_nonvides` créée précédemment (déjà présente dans l'environnement). Créez la table `tib_racines` en utilisant pour cela la fonction adéquate du package `proustr`.
+Créez la table `tib_racines` en utilisant pour cela la fonction adéquate du package `proustr`.
 
 `@hint`
 Avez-vous trouvé de quelle fonction il s'agissait? il s'agit de `pr_stem_words()`...
@@ -200,6 +203,7 @@ xp: 100
 skills: 1
 ```
 
+On va maintenant essayer d'associer aux mots des commentaires des **sentiments**...
 
 `@instructions`
 
@@ -224,7 +228,7 @@ tib_polarites <- tib_mots_nonvides %>%
     left_join(___) 
 
 library(dplyr)    
-tib_comments_polarity  %>%
+tib_polarites  %>%
   group_by(word,polarity) %>% 
   summarise(n=n()) %>% 
   arrange(desc(n))

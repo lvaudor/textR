@@ -80,12 +80,13 @@ xp: 50
 skills: 1
 ```
 
-`@instructions`
 Examinez cette expression régulière:
 
 ```{r}
 "\\w?g"
 ```
+
+`@instructions`
 
 Pour quels éléments le pattern sera-t-il détecté parmi les ingrédients suivants:
 
@@ -193,7 +194,7 @@ xp: 100
 skills: 1
 ```
 
-Examinez le vecteur `ingredients` ci-contre.
+Examinez le vecteur `ingredients` défini ci-contre.
 
 `@instructions`
 
@@ -202,6 +203,7 @@ Examinez le vecteur `ingredients` ci-contre.
 
 
 `@hint`
+La classe de caractères numériques peut être notée `"\\d"` dans l'appel aux fonctions de stringr.
 
 `@pre_exercise_code`
 ```{r}
@@ -250,3 +252,4 @@ ex() %>% check_object("quantites") %>% check_equal()
 ex() %>% check_function("str_extract")
 success_msg("Yep!! Cette fois-ci vous l'avez fait tout seul!")
 ```
+
